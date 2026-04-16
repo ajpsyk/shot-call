@@ -17,3 +17,6 @@ mono_crash.*.json
 
 # Mac OS ignores
 .DS_Store
+
+# Visual Studio Code
+.vscode/
