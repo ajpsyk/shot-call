@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MeteoroidResource" format=3 uid="uid://vi0im8i8xpl0"]
+
+[ext_resource type="Script" uid="uid://8bufnbxor5d4" path="res://resources/meteroid_data.gd" id="1_ue2iv"]
+[ext_resource type="Texture2D" uid="uid://yuq2o0ftqrab" path="res://assets/kenney_space-shooter-remastered/PNG/Meteors/meteorGrey_big2.png" id="2_tn6b2"]
+
+[resource]
+script = ExtResource("1_ue2iv")
+texture = ExtResource("2_tn6b2")
+radius = 40.0
+score = 100
+metadata/_custom_type_script = "uid://8bufnbxor5d4"

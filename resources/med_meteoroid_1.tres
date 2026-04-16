@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MeteoroidResource" format=3 uid="uid://vtnclxa4035p"]
+
+[ext_resource type="Script" uid="uid://8bufnbxor5d4" path="res://resources/meteroid_data.gd" id="1_bguam"]
+
+[resource]
+script = ExtResource("1_bguam")
+metadata/_custom_type_script = "uid://8bufnbxor5d4"

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://tetm1bl8lfp8"]
+
+[ext_resource type="Script" uid="uid://2c32wbwfbhac" path="res://actors/meteorite.gd" id="1_dpgfl"]
+
+[node name="Meteorite" type="Node2D" unique_id=2091518088]
+script = ExtResource("1_dpgfl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1611678097]
