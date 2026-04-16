@@ -8,7 +8,7 @@
 radius = 40.0
 
 [node name="Player" type="CharacterBody2D" unique_id=2145724321]
-collision_mask = 0
+collision_mask = 28
 script = ExtResource("1_mvpqy")
 
 [node name="RedShipSprite" type="Sprite2D" parent="." unique_id=399893877]
