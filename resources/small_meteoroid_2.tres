@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MeteoroidResource" format=3 uid="uid://c6h2cn4wcs7tq"]
+
+[ext_resource type="Script" uid="uid://8bufnbxor5d4" path="res://resources/meteroid_data.gd" id="1_qiwxh"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qiwxh"]
+load_path = "res://.godot/imported/meteorGrey_small2.png-d428aa04f92bbce2e154d66649c4c80a.ctex"
+
+[resource]
+script = ExtResource("1_qiwxh")
+texture = SubResource("CompressedTexture2D_qiwxh")
+radius = 10.4
+score = 300
+metadata/_custom_type_script = "uid://8bufnbxor5d4"
