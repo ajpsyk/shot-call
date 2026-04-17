@@ -17,10 +17,11 @@ collision_mask = 24
 playerNumber = 1
 Laser = NodePath("../LaserManager")
 
-[node name="Player2" parent="." unique_id=969589887 instance=ExtResource("1_uwrxv")]
+[node name="Player2" parent="." unique_id=969589887 node_paths=PackedStringArray("Laser") instance=ExtResource("1_uwrxv")]
 position = Vector2(830, 273)
 collision_mask = 24
 playerNumber = 2
+Laser = NodePath("../LaserManager")
 
 [node name="WorldBorder" type="Node2D" parent="." unique_id=891419900]
 
