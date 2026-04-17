@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://buwwawpf4y78f" path="res://actors/player.tscn" id="1_uwrxv"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
+
 [node name="game" type="Node2D" unique_id=1924521991]
 
 [node name="Player1" parent="." unique_id=2145724321 instance=ExtResource("1_uwrxv")]
@@ -11,3 +13,13 @@ playerNumber = 1
 [node name="Player2" parent="." unique_id=969589887 instance=ExtResource("1_uwrxv")]
 position = Vector2(830, 273)
 playerNumber = 2
+
+[node name="WorldBorder" type="Node2D" parent="." unique_id=891419900]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WorldBorder" unique_id=783556734]
+collision_layer = 16
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_uwrxv")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder/StaticBody2D" unique_id=493395772]
+polygon = PackedVector2Array(-4, -4, 1200, -4, 1200, 0, 0, 0, 0, 600, 1200, 600, 1200, -4, 1204, -4, 1204, 604, -4, 604)
