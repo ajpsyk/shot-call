@@ -1,10 +1,13 @@
 [gd_scene format=3 uid="uid://co6oduk3i6bfl"]
 
 [ext_resource type="PackedScene" uid="uid://buwwawpf4y78f" path="res://actors/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://tetm1bl8lfp8" path="res://actors/meteorite.tscn" id="1_yqjtg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
 [node name="game" type="Node2D" unique_id=1924521991]
+
+[node name="Meteoroid Shower" parent="." unique_id=2091518088 instance=ExtResource("1_yqjtg")]
 
 [node name="Player1" parent="." unique_id=2145724321 instance=ExtResource("1_uwrxv")]
 position = Vector2(285, 281)
