@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://tetm1bl8lfp8"]
 
-[ext_resource type="Script" uid="uid://2c32wbwfbhac" path="res://actors/meteorite.gd" id="1_dpgfl"]
+[ext_resource type="Script" uid="uid://2c32wbwfbhac" path="res://scripts/meteorite.gd" id="1_dpgfl"]
 [ext_resource type="Script" uid="uid://8bufnbxor5d4" path="res://resources/meteroid_data.gd" id="2_4p2h4"]
 [ext_resource type="Resource" uid="uid://dlgkjlrabmsps" path="res://resources/big_meteoroid_1.tres" id="3_u6qdn"]
 [ext_resource type="Resource" uid="uid://vi0im8i8xpl0" path="res://resources/big_meteoroid_2.tres" id="4_vyqvx"]

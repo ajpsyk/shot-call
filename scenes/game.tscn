@@ -1,18 +1,27 @@
 [gd_scene format=3 uid="uid://co6oduk3i6bfl"]
 
+[ext_resource type="PackedScene" uid="uid://xb38s4s5lhjs" path="res://scenes/laser.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://buwwawpf4y78f" path="res://actors/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://tetm1bl8lfp8" path="res://actors/meteorite.tscn" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://b6mm1l2f6ynx3" path="res://scenes/laser_manager.tscn" id="3_lbhrr"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
 [node name="game" type="Node2D" unique_id=1924521991]
 
-[node name="Player1" parent="." unique_id=2145724321 instance=ExtResource("1_uwrxv")]
-position = Vector2(285, 281)
-playerNumber = 1
+[node name="Meteoroid Shower" parent="." unique_id=2091518088 instance=ExtResource("1_yqjtg")]
 
-[node name="Player2" parent="." unique_id=969589887 instance=ExtResource("1_uwrxv")]
+[node name="Player1" parent="." unique_id=2145724321 node_paths=PackedStringArray("Laser") instance=ExtResource("1_uwrxv")]
+position = Vector2(285, 281)
+collision_mask = 24
+playerNumber = 1
+Laser = NodePath("../LaserManager")
+
+[node name="Player2" parent="." unique_id=969589887 node_paths=PackedStringArray("Laser") instance=ExtResource("1_uwrxv")]
 position = Vector2(830, 273)
+collision_mask = 24
 playerNumber = 2
+Laser = NodePath("../LaserManager")
 
 [node name="WorldBorder" type="Node2D" parent="." unique_id=891419900]
 
@@ -23,3 +32,6 @@ physics_material_override = SubResource("PhysicsMaterial_uwrxv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder/StaticBody2D" unique_id=493395772]
 polygon = PackedVector2Array(-4, -4, 1200, -4, 1200, 0, 0, 0, 0, 600, 1200, 600, 1200, -4, 1204, -4, 1204, 604, -4, 604)
+
+[node name="LaserManager" parent="." unique_id=1663080434 instance=ExtResource("3_lbhrr")]
+laser_scene = ExtResource("1_lnu2h")
