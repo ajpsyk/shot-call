@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://tetm1bl8lfp8"]
 
 [ext_resource type="Script" uid="uid://2c32wbwfbhac" path="res://actors/meteorite.gd" id="1_dpgfl"]
+[ext_resource type="Script" uid="uid://8bufnbxor5d4" path="res://resources/meteroid_data.gd" id="2_4p2h4"]
+[ext_resource type="Resource" uid="uid://dlgkjlrabmsps" path="res://resources/big_meteoroid_1.tres" id="3_u6qdn"]
+[ext_resource type="Resource" uid="uid://vi0im8i8xpl0" path="res://resources/big_meteoroid_2.tres" id="4_vyqvx"]
+[ext_resource type="Resource" uid="uid://dty00cviiqr3c" path="res://resources/big_meteoroid_3.tres" id="5_w3yv5"]
+[ext_resource type="Resource" uid="uid://blnphebl3qf64" path="res://resources/big_meteoroid_4.tres" id="6_pncrs"]
+[ext_resource type="Resource" uid="uid://vtnclxa4035p" path="res://resources/med_meteoroid_1.tres" id="7_38b14"]
+[ext_resource type="Resource" uid="uid://25llfmmrvjle" path="res://resources/med_meteoroid_2.tres" id="8_y53qw"]
+[ext_resource type="Resource" uid="uid://cxtmr8ebqgba3" path="res://resources/small_meteoroid_1.tres" id="9_8sqsw"]
+[ext_resource type="Resource" uid="uid://c6h2cn4wcs7tq" path="res://resources/small_meteoroid_2.tres" id="10_ppi4r"]
 
-[node name="Meteorite" type="Node2D" unique_id=2091518088]
+[node name="Meteoroid Shower" type="Node2D" unique_id=2091518088]
 script = ExtResource("1_dpgfl")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1611678097]
+METEOROID_TEMPLATES = Array[ExtResource("2_4p2h4")]([ExtResource("3_u6qdn"), ExtResource("4_vyqvx"), ExtResource("5_w3yv5"), ExtResource("6_pncrs"), ExtResource("7_38b14"), ExtResource("8_y53qw"), ExtResource("9_8sqsw"), ExtResource("10_ppi4r")])
