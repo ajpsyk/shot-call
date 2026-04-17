@@ -7,7 +7,6 @@ var screen_size : Vector2
 const COUNT: int = 50
 const SPEED_MIN = 20
 const SPEED_MAX = 80
-enum Polarity { BLUE, RED }
 
 const COLOR_BLUE = Color(0.2, 0.5, 1.0)
 const COLOR_RED = Color(1.0, 0.2, 0.2)
@@ -21,7 +20,7 @@ class Meteoroid:
 	var body := RID()
 	var hitbox := RID()
 	var texture: Texture2D
-	var polarity: Polarity
+	var polarity: Globals.Polarity
 	var display_color: Color
 	var active : bool = false
 
@@ -33,8 +32,8 @@ func _ready() -> void:
 	for _i in COUNT:
 		var meteoroid := Meteoroid.new()
 		
-		meteoroid.polarity = Polarity.values().pick_random()
-		if meteoroid.polarity == Polarity.RED:
+		meteoroid.polarity = Globals.Polarity.values().pick_random()
+		if meteoroid.polarity == Globals.Polarity.RED:
 			meteoroid.display_color = COLOR_RED
 		else:
 			meteoroid.display_color = COLOR_BLUE
@@ -49,6 +48,7 @@ func _ready() -> void:
 		meteoroid.body = PhysicsServer2D.body_create()
 		PhysicsServer2D.body_set_space(meteoroid.body, get_world_2d().get_space())
 		PhysicsServer2D.body_add_shape(meteoroid.body, meteoroid.hitbox)
+		PhysicsServer2D.body_set_collision_layer(meteoroid.body, Globals.PhysicsLayers.ENEMY)
 		PhysicsServer2D.body_set_collision_mask(meteoroid.body, 0)
 
 		meteoroid.position = Vector2(

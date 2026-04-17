@@ -10,8 +10,7 @@ extends CharacterBody2D
 ## The speed at which the player moves in pixels/second.
 @export var moveSpeed: float = 300
 
-enum Polarity{RED, BLUE}
-var polarity: Polarity = Polarity.RED
+var polarity: Globals.Polarity = Globals.Polarity.RED
 
 # ~ Child Node References ~
 @onready var redShipSprite: Sprite2D = $RedShipSprite

@@ -14,6 +14,10 @@ config/name="ShotCall"
 run/main_scene="uid://co6oduk3i6bfl"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[autoload]
+
+Globals="*uid://bl033q4lk5qlc"
+
 [display]
 
 window/size/viewport_width=1200
