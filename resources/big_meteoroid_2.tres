@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_ue2iv")
 texture = ExtResource("2_tn6b2")
-radius = 40.0
+radius = 39.2
 score = 100
 metadata/_custom_type_script = "uid://8bufnbxor5d4"
