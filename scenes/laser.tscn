@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://xb38s4s5lhjs"]
+
+[ext_resource type="Script" uid="uid://b58ffuysx8uo7" path="res://scripts/laser.gd" id="1_wrmep"]
+[ext_resource type="Texture2D" uid="uid://od2y0dhogtno" path="res://assets/kenney_space-shooter-remastered/PNG/Lasers/laserRed01.png" id="2_588y2"]
+[ext_resource type="Texture2D" uid="uid://qc1t288q6fn0" path="res://assets/kenney_space-shooter-remastered/PNG/Lasers/laserBlue01.png" id="3_lie4t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_588y2"]
+size = Vector2(8, 54)
+
+[node name="Laser" type="Area2D" unique_id=1505976439]
+collision_layer = 2
+collision_mask = 28
+script = ExtResource("1_wrmep")
+
+[node name="RedLaser" type="Sprite2D" parent="." unique_id=1784963649]
+texture = ExtResource("2_588y2")
+
+[node name="BlueLaser" type="Sprite2D" parent="." unique_id=1650953930]
+texture = ExtResource("3_lie4t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=25091446]
+shape = SubResource("RectangleShape2D_588y2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1450061428]
+rect = Rect2(-5, -27, 10, 54)

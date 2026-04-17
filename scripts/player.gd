@@ -10,7 +10,13 @@ extends CharacterBody2D
 ## The speed at which the player moves in pixels/second.
 @export var moveSpeed: float = 300
 
+@export var Laser: Node2D
+
+@export var fireDelay: float = 0.15
+
+
 var polarity: Globals.Polarity = Globals.Polarity.RED
+var fireTimer: float = 0.0
 
 # ~ Child Node References ~
 @onready var redShipSprite: Sprite2D = $RedShipSprite
@@ -34,6 +40,8 @@ func _physics_process(delta: float) -> void:
 	var direction: Vector2 = Vector2(xMovement, yMovement).normalized()
 
 	velocity = direction * moveSpeed
+	
+	fireTimer += delta
 
 	move_and_slide()
 
@@ -45,25 +53,34 @@ func _input(event: InputEvent) -> void:
 	if playerNumber == 2 and event.is_action_pressed("p2_action"):
 		get_viewport().set_input_as_handled()
 		Action()
+	
+	if (playerNumber == 1 and event.is_action_pressed("p1_fire")):
+		get_viewport().set_input_as_handled()
+		Fire()
+	if (playerNumber == 2 and event.is_action_pressed("p2_fire")):
+		get_viewport().set_input_as_handled()
+		Fire()
 
 
 func Fire():
-	pass
+	if Laser and fireTimer >= fireDelay:
+		Laser.fire_laser(global_position, polarity)
+		fireTimer = 0.0
 
 func Action():
 	# Only does a simple polarity switch for now. This is how it can function in singleplayer.
-	if polarity == Polarity.RED:
-		polarity = Polarity.BLUE
-	elif polarity == Polarity.BLUE:
-		polarity = Polarity.RED
+	if polarity == Globals.Polarity.RED:
+		polarity = Globals.Polarity.BLUE
+	elif polarity == Globals.Polarity.BLUE:
+		polarity = Globals.Polarity.RED
 
 	UpdateShipSprite()
 
 ## Called after Polarity updates, and in _ready() to set to initial polarity.
 func UpdateShipSprite():
-	if polarity == Polarity.RED:
+	if polarity == Globals.Polarity.RED:
 		blueShipSprite.set_visible(false)
 		redShipSprite.set_visible(true)
-	elif polarity == Polarity.BLUE:
+	elif polarity == Globals.Polarity.BLUE:
 		redShipSprite.set_visible(false)
 		blueShipSprite.set_visible(true)

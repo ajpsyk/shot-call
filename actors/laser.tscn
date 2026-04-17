@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://xb38s4s5lhjs"]
-
-[ext_resource type="Script" uid="uid://b58ffuysx8uo7" path="res://scripts/laser.gd" id="1_wrmep"]
-
-[node name="Laser" type="Node2D" unique_id=223859575]
-script = ExtResource("1_wrmep")

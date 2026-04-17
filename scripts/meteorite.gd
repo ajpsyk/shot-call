@@ -93,3 +93,4 @@ func _exit_tree() -> void:
 		PhysicsServer2D.free_rid(meteoroid.hitbox)
 	
 	meteoroids.clear()
+	
