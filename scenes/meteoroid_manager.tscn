@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://8u04i3lelg5f"]
+
+[ext_resource type="Script" uid="uid://dbouxmfyv0wuj" path="res://scripts/meteoroid_manager.gd" id="1_h0fa7"]
+[ext_resource type="PackedScene" uid="uid://tetm1bl8lfp8" path="res://actors/meteroid.tscn" id="2_qxoka"]
+
+[node name="MeteoroidManager" type="Node2D" unique_id=1619203560]
+script = ExtResource("1_h0fa7")
+meteor_scene = ExtResource("2_qxoka")

@@ -89,10 +89,13 @@ p2_action={
 [layer_names]
 
 2d_physics/layer_1="Player"
-2d_physics/layer_2="PlayerAttack"
-2d_physics/layer_3="Enemy"
-2d_physics/layer_4="EnemyAttack"
+2d_physics/layer_2="PlayerAttack Red"
+2d_physics/layer_3="Enemy Red"
+2d_physics/layer_4="EnemyAttack Red"
 2d_physics/layer_5="World"
+2d_physics/layer_6="Player Attack Blue"
+2d_physics/layer_7="Enemy Blue"
+2d_physics/layer_8="EnemyAttack Blue"
 
 [physics]
 
