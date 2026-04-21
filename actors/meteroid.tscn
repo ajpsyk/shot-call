@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://tetm1bl8lfp8"]
+
+[ext_resource type="Script" uid="uid://2c32wbwfbhac" path="res://scripts/meteoroid.gd" id="1_dpgfl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dlr3y"]
+
+[node name="Meteoroid" type="Area2D" unique_id=559024023]
+z_index = 10
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_dpgfl")
+min_speed = 20.0
+max_speed = 80.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=405041427]
+shape = SubResource("CircleShape2D_dlr3y")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1453416082]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

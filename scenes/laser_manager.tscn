@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b6mm1l2f6ynx3"]
 
-[ext_resource type="Script" uid="uid://cj4satamhpcnc" path="res://laser_manager.gd" id="1_fhb2e"]
+[ext_resource type="Script" uid="uid://cj4satamhpcnc" path="res://scripts/laser_manager.gd" id="1_fhb2e"]
 
 [node name="LaserManager" type="Node2D" unique_id=1663080434]
 script = ExtResource("1_fhb2e")
