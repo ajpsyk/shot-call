@@ -19,13 +19,13 @@
 [node name="game" type="Node2D" unique_id=1924521991]
 
 [node name="Player1" parent="." unique_id=2145724321 node_paths=PackedStringArray("Laser") instance=ExtResource("1_uwrxv")]
-position = Vector2(285, 281)
+position = Vector2(253, 1784)
 collision_mask = 24
 playerNumber = 1
 Laser = NodePath("../LaserManager")
 
 [node name="Player2" parent="." unique_id=969589887 node_paths=PackedStringArray("Laser") instance=ExtResource("1_uwrxv")]
-position = Vector2(830, 273)
+position = Vector2(790, 1776)
 collision_mask = 24
 playerNumber = 2
 Laser = NodePath("../LaserManager")
@@ -38,7 +38,9 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_uwrxv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder/StaticBody2D" unique_id=493395772]
-polygon = PackedVector2Array(-4, -4, 1200, -4, 1200, 0, 0, 0, 0, 600, 1200, 600, 1200, -4, 1204, -4, 1204, 604, -4, 604)
+position = Vector2(-1.9404068, 1.2284279)
+scale = Vector2(0.88990057, 3.1791234)
+polygon = PackedVector2Array(-3.4381292, -3.3104334, 1200, -4, 1201.1907, -8.243978, 728.34106, -4.0235367, 414.1538, -2.915924, 0, 0, 0, 600, 1199, 603.72736, 1200, -4, 1204, -4, 1203.5731, 605.15344, -4, 604, -4, 209.40039)
 
 [node name="LaserManager" parent="." unique_id=1663080434 instance=ExtResource("3_lbhrr")]
 laser_scene = ExtResource("1_lnu2h")
