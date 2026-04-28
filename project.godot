@@ -20,8 +20,8 @@ Globals="*uid://bl033q4lk5qlc"
 
 [display]
 
-window/size/viewport_width=1200
-window/size/viewport_height=600
+window/size/viewport_width=1080
+window/size/viewport_height=1920
 
 [input]
 
