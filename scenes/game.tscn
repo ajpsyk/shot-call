@@ -18,17 +18,17 @@
 
 [node name="game" type="Node2D" unique_id=1924521991]
 
-[node name="Player1" parent="." unique_id=2145724321 node_paths=PackedStringArray("Laser") instance=ExtResource("1_uwrxv")]
-position = Vector2(253, 1784)
+[node name="Player1" parent="." unique_id=2145724321 node_paths=PackedStringArray("laser_manager") instance=ExtResource("1_uwrxv")]
+position = Vector2(302, 1778)
 collision_mask = 24
-playerNumber = 1
-Laser = NodePath("../LaserManager")
+player_number = 1
+laser_manager = NodePath("../LaserManager")
 
-[node name="Player2" parent="." unique_id=969589887 node_paths=PackedStringArray("Laser") instance=ExtResource("1_uwrxv")]
+[node name="Player2" parent="." unique_id=969589887 node_paths=PackedStringArray("laser_manager") instance=ExtResource("1_uwrxv")]
 position = Vector2(790, 1776)
 collision_mask = 24
-playerNumber = 2
-Laser = NodePath("../LaserManager")
+player_number = 2
+laser_manager = NodePath("../LaserManager")
 
 [node name="WorldBorder" type="Node2D" parent="." unique_id=891419900]
 
