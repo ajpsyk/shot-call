@@ -4,9 +4,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dlr3y"]
 
-[node name="Meteoroid" type="Area2D" unique_id=559024023]
+[node name="Meteoroid" type="Area2D" unique_id=559024023 groups=["Enemy"]]
 z_index = 10
-collision_layer = 4
+collision_layer = 68
 collision_mask = 2
 script = ExtResource("1_dpgfl")
 min_speed = 20.0
