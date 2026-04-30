@@ -5,6 +5,7 @@ extends CharacterBody2D
 # ~ Game Logic ~
 
 ## Indicates which player number the player is (1 or 2) or that the player is playing singleplayer (0).
+## NOTE: Player 0 is currently unsupported.
 @export var player_number: int = 0
 
 ## The speed at which the player moves in pixels/second.
@@ -18,6 +19,8 @@ extends CharacterBody2D
 var health: int
 var polarity: Globals.Polarity = Globals.Polarity.RED
 var fire_timer: float = 0.0
+
+var dead: bool = false
 
 # ~ Child Node References ~
 @onready var red_ship_sprite: Sprite2D = $RedShipSprite
@@ -36,49 +39,58 @@ func _ready() -> void:
 	health = max_health
 	update_ship_sprite()
 	update_health_ui()
+	set_global_position(Globals.get_spawn_point(player_number))
+	dead = false
 
 func _physics_process(delta: float) -> void:
-	var x_movement: float 
-	var y_movement: float 
-	if player_number == 1:
-		x_movement = Input.get_axis("p1_left", "p1_right")
-		y_movement = Input.get_axis("p1_up", "p1_down")
-	elif player_number == 2:
-		x_movement = Input.get_axis("p2_left", "p2_right")
-		y_movement = Input.get_axis("p2_up", "p2_down")
+	if not dead:
+		var x_movement: float 
+		var y_movement: float 
+		if player_number == 1:
+			x_movement = Input.get_axis("p1_left", "p1_right")
+			y_movement = Input.get_axis("p1_up", "p1_down")
+		elif player_number == 2:
+			x_movement = Input.get_axis("p2_left", "p2_right")
+			y_movement = Input.get_axis("p2_up", "p2_down")
 
-	var direction: Vector2 = Vector2(x_movement, y_movement).normalized()
+		var direction: Vector2 = Vector2(x_movement, y_movement).normalized()
 
-	velocity = direction * move_speed
-	
-	fire_timer += delta
+		velocity = direction * move_speed
+		
+		fire_timer += delta
 
-	for area: Area2D in hurtbox.get_overlapping_areas():
-		if area.is_in_group("Enemy") or area.is_in_group("EnemyAtk"):
-			if "polarity" in area:
-				if area.polarity != polarity:
-					reduce_health()
-					area.queue_free()
+		for area: Area2D in hurtbox.get_overlapping_areas():
+			if area.is_in_group("Enemy") or area.is_in_group("EnemyAtk"):
+				if "polarity" in area:
+					if area.polarity != polarity:
+						change_health(-1)
+						area.queue_free()
 
-	move_and_slide()
+		move_and_slide()
 
 func _input(event: InputEvent) -> void:
-	# Handle action
-	if player_number == 1 and event.is_action_pressed("p1_action"):
-		get_viewport().set_input_as_handled()
-		action()
-	if player_number == 2 and event.is_action_pressed("p2_action"):
-		get_viewport().set_input_as_handled()
-		action()
+	if not dead:
+		if player_number == 1 and event.is_action_pressed("p1_action"):
+			get_viewport().set_input_as_handled()
+			action()
+		if player_number == 2 and event.is_action_pressed("p2_action"):
+			get_viewport().set_input_as_handled()
+			action()
+		
+		if (player_number == 1 and event.is_action_pressed("p1_fire")):
+			get_viewport().set_input_as_handled()
+			fire()
+		if (player_number == 2 and event.is_action_pressed("p2_fire")):
+			get_viewport().set_input_as_handled()
+			fire()
 	
-	if (player_number == 1 and event.is_action_pressed("p1_fire")):
-		get_viewport().set_input_as_handled()
-		fire()
-	if (player_number == 2 and event.is_action_pressed("p2_fire")):
-		get_viewport().set_input_as_handled()
-		fire()
+	# Note: Action respawns player when dead. This is for ease of playtesting and should change when we implement an actual respawn mechanic.
+	else:
+		if (player_number == 1 and event.is_action_pressed("p1_action")) or (player_number == 2 and event.is_action_pressed("p2_action")):
+			_ready()
 
-# ~ Helper Functions
+
+# ~ Helper Functions ~
 
 func fire():
 	if laser_manager and fire_timer >= fire_delay:
@@ -103,20 +115,20 @@ func update_ship_sprite():
 		red_ship_sprite.set_visible(false)
 		blue_ship_sprite.set_visible(true)
 
-
-func reduce_health(amount: int = 1):
-	health -= amount
+func change_health(amount: int):
+	health += amount
+	if health > max_health:
+		health = max_health
+	update_health_ui()
 	if health <= 0:
 		die()
-	print("ow")
-	update_health_ui()
-
-func gain_health(amount: int = 1):
-	health = max(health + amount, max_health)
-	update_health_ui()
 
 func die():
-	print("Man I'm dead")
+	dead = true
+	blue_ship_sprite.set_visible(false)
+	red_ship_sprite.set_visible(false)
+	health_rich_text_label.set_text("Died! Press Action to respawn")
+	# Call _ready() to respawn the player
 
 func update_health_ui():
 	# We can change this function to call something on a UI element later.
