@@ -58,6 +58,13 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * move_speed
 		
 		fire_timer += delta
+		
+		if (player_number == 1 and Input.is_action_pressed("p1_fire")):
+			get_viewport().set_input_as_handled()
+			fire()
+		if (player_number == 2 and Input.is_action_pressed("p2_fire")):
+			get_viewport().set_input_as_handled()
+			fire()
 
 		for area: Area2D in hurtbox.get_overlapping_areas():
 			if area.is_in_group("Enemy") or area.is_in_group("EnemyAtk"):
@@ -77,12 +84,7 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			action()
 		
-		if (player_number == 1 and event.is_action_pressed("p1_fire")):
-			get_viewport().set_input_as_handled()
-			fire()
-		if (player_number == 2 and event.is_action_pressed("p2_fire")):
-			get_viewport().set_input_as_handled()
-			fire()
+		
 	
 	# Note: Action respawns player when dead. This is for ease of playtesting and should change when we implement an actual respawn mechanic.
 	else:
