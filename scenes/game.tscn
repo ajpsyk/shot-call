@@ -13,6 +13,7 @@
 [ext_resource type="Resource" uid="uid://25llfmmrvjle" path="res://resources/med_meteoroid_2.tres" id="12_1kice"]
 [ext_resource type="Resource" uid="uid://cxtmr8ebqgba3" path="res://resources/small_meteoroid_1.tres" id="13_5newe"]
 [ext_resource type="Resource" uid="uid://c6h2cn4wcs7tq" path="res://resources/small_meteoroid_2.tres" id="14_37s47"]
+[ext_resource type="PackedScene" uid="uid://cqj0osawxost" path="res://scenes/score_overlay.tscn" id="14_trtic"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
@@ -55,3 +56,5 @@ laser_scene = ExtResource("1_lnu2h")
 BIG_METEOROIDS = Array[ExtResource("6_trtic")]([ExtResource("7_ir15t"), ExtResource("8_ca42v"), ExtResource("9_rysoc"), ExtResource("10_ssvqc")])
 MEDIUM_METEOROIDS = Array[ExtResource("6_trtic")]([ExtResource("11_264po"), ExtResource("12_1kice")])
 SMALL_METEOROIDS = Array[ExtResource("6_trtic")]([ExtResource("13_5newe"), ExtResource("14_37s47")])
+
+[node name="Score Overlay" parent="." unique_id=1629194483 instance=ExtResource("14_trtic")]

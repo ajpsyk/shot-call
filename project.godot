@@ -22,11 +22,14 @@ Globals="*uid://bl033q4lk5qlc"
 
 window/size/viewport_width=1080
 window/size/viewport_height=1920
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [global_group]
 
 Enemy=""
+Player=""
+Laser=""
 
 [input]
 
