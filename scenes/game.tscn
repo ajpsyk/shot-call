@@ -18,17 +18,25 @@
 
 [node name="game" type="Node2D" unique_id=1924521991]
 
-[node name="Player1" parent="." unique_id=2145724321 node_paths=PackedStringArray("Laser") instance=ExtResource("1_uwrxv")]
-position = Vector2(253, 1784)
-collision_mask = 24
-playerNumber = 1
-Laser = NodePath("../LaserManager")
+[node name="Player1Spawn" type="Marker2D" parent="." unique_id=1692881551]
+position = Vector2(270, 1650)
+gizmo_extents = 60.0
 
-[node name="Player2" parent="." unique_id=969589887 node_paths=PackedStringArray("Laser") instance=ExtResource("1_uwrxv")]
-position = Vector2(790, 1776)
+[node name="Player2Spawn" type="Marker2D" parent="." unique_id=463786856]
+position = Vector2(810, 1650)
+gizmo_extents = 60.0
+
+[node name="Player1" parent="." unique_id=2145724321 node_paths=PackedStringArray("laser_manager") instance=ExtResource("1_uwrxv")]
+position = Vector2(133, 1833)
 collision_mask = 24
-playerNumber = 2
-Laser = NodePath("../LaserManager")
+player_number = 1
+laser_manager = NodePath("../LaserManager")
+
+[node name="Player2" parent="." unique_id=969589887 node_paths=PackedStringArray("laser_manager") instance=ExtResource("1_uwrxv")]
+position = Vector2(942, 1859)
+collision_mask = 24
+player_number = 2
+laser_manager = NodePath("../LaserManager")
 
 [node name="WorldBorder" type="Node2D" parent="." unique_id=891419900]
 
@@ -37,10 +45,8 @@ collision_layer = 16
 collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_uwrxv")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder/StaticBody2D" unique_id=493395772]
-position = Vector2(-1.9404068, 1.2284279)
-scale = Vector2(0.88990057, 3.1791234)
-polygon = PackedVector2Array(-3.4381292, -3.3104334, 1200, -4, 1201.1907, -8.243978, 728.34106, -4.0235367, 414.1538, -2.915924, 0, 0, 0, 600, 1199, 603.72736, 1200, -4, 1204, -4, 1203.5731, 605.15344, -4, 604, -4, 209.40039)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder/StaticBody2D" unique_id=635149500]
+polygon = PackedVector2Array(-20, 0, 1080, 0, 1080, 1920, 0, 1920, 0, 0, -20, 0, -20, 1940, 1100, 1940, 1100, -20, -20, -20)
 
 [node name="LaserManager" parent="." unique_id=1663080434 instance=ExtResource("3_lbhrr")]
 laser_scene = ExtResource("1_lnu2h")
