@@ -10,7 +10,7 @@ radius = 24.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_esgq3"]
 radius = 36.0
 
-[node name="Player" type="CharacterBody2D" unique_id=2145724321]
+[node name="Player" type="CharacterBody2D" unique_id=2145724321 groups=["Player"]]
 collision_mask = 16
 script = ExtResource("1_mvpqy")
 
@@ -40,3 +40,5 @@ theme_override_font_sizes/normal_font_size = 29
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

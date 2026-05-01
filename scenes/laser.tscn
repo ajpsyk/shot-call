@@ -5,11 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://qc1t288q6fn0" path="res://assets/kenney_space-shooter-remastered/PNG/Lasers/laserBlue01.png" id="3_lie4t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_588y2"]
-size = Vector2(8, 54)
+size = Vector2(16, 60)
 
-[node name="Laser" type="Area2D" unique_id=1505976439]
+[node name="Laser" type="Area2D" unique_id=1505976439 groups=["Laser"]]
 collision_layer = 2
-collision_mask = 28
+collision_mask = 221
 script = ExtResource("1_wrmep")
 
 [node name="RedLaser" type="Sprite2D" parent="." unique_id=1784963649]
@@ -19,6 +19,7 @@ texture = ExtResource("2_588y2")
 texture = ExtResource("3_lie4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=25091446]
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_588y2")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1450061428]

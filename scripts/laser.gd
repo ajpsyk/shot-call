@@ -10,17 +10,9 @@ func _ready() -> void:
 	if polarity == Globals.Polarity.RED:
 		redLaser.visible = true
 		blueLaser.visible = false
-		set_collision_layer_value(2, true)
-		set_collision_layer_value(6, false)
-		set_collision_mask_value(3, true)
-		set_collision_mask_value(7, false)
 	else:
 		redLaser.visible = false
 		blueLaser.visible = true
-		set_collision_layer_value(2, false)
-		set_collision_layer_value(6, true)
-		set_collision_mask_value(3, false)
-		set_collision_mask_value(7, true)
 	
 	
 

@@ -27,6 +27,8 @@ window/stretch/mode="viewport"
 [global_group]
 
 Enemy=""
+Player=""
+Laser=""
 
 [input]
 
