@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cqj0osawxost"]
+[gd_scene format=3 uid="uid://c04mqx6ntmd8h"]
 
 [ext_resource type="Script" uid="uid://cql525ofss4hj" path="res://scripts/score_overlay.gd" id="1_mspro"]
 [ext_resource type="FontFile" uid="uid://dkb26snbvno7e" path="res://assets/kenney_space-shooter-remastered/Bonus/kenvector_future.ttf" id="2_jrum0"]

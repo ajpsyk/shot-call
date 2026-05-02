@@ -11,5 +11,6 @@ func _process(_delta):
 	update_scores()
 
 func update_scores():
-	p1_label.text = str(Globals.player_1_score)
-	p2_label.text = str(Globals.player_2_score)
+	
+	p1_label.text = str(Globals.player_1_score).pad_zeros(6)
+	p2_label.text = str(Globals.player_2_score).pad_zeros(6)

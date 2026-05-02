@@ -38,6 +38,7 @@ var dead: bool = false
 func _ready() -> void:
 	health = max_health
 	update_ship_sprite()
+	update_hurtbox_polarity()
 	update_health_ui()
 	set_global_position(Globals.get_spawn_point(player_number))
 	dead = false
@@ -58,13 +59,13 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * move_speed
 		
 		fire_timer += delta
-
-		for area: Area2D in hurtbox.get_overlapping_areas():
-			if area.is_in_group("Enemy") or area.is_in_group("EnemyAtk"):
-				if "polarity" in area:
-					if area.polarity != polarity:
-						change_health(-1)
-						area.queue_free()
+		
+		if (player_number == 1 and Input.is_action_pressed("p1_fire")):
+			get_viewport().set_input_as_handled()
+			fire()
+		if (player_number == 2 and Input.is_action_pressed("p2_fire")):
+			get_viewport().set_input_as_handled()
+			fire()
 
 		move_and_slide()
 
@@ -77,24 +78,25 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			action()
 		
-		if (player_number == 1 and event.is_action_pressed("p1_fire")):
-			get_viewport().set_input_as_handled()
-			fire()
-		if (player_number == 2 and event.is_action_pressed("p2_fire")):
-			get_viewport().set_input_as_handled()
-			fire()
+		
 	
 	# Note: Action respawns player when dead. This is for ease of playtesting and should change when we implement an actual respawn mechanic.
 	else:
 		if (player_number == 1 and event.is_action_pressed("p1_action")) or (player_number == 2 and event.is_action_pressed("p2_action")):
 			_ready()
 
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Enemy") or area.is_in_group("EnemyAtk"):
+		if "polarity" in area:
+			if area.polarity != polarity:
+				change_health(-1)
+
 
 # ~ Helper Functions ~
 
 func fire():
 	if laser_manager and fire_timer >= fire_delay:
-		laser_manager.fire_laser(global_position, polarity)
+		laser_manager.fire_laser(global_position, polarity, player_number)
 		fire_timer = 0.0
 
 func action():
@@ -105,6 +107,7 @@ func action():
 		polarity = Globals.Polarity.RED
 
 	update_ship_sprite()
+	update_hurtbox_polarity()
 
 ## Called after Polarity updates, and in _ready() to set to initial polarity.
 func update_ship_sprite():
@@ -114,6 +117,14 @@ func update_ship_sprite():
 	elif polarity == Globals.Polarity.BLUE:
 		red_ship_sprite.set_visible(false)
 		blue_ship_sprite.set_visible(true)
+
+func update_hurtbox_polarity():
+	if polarity == Globals.Polarity.RED:
+		hurtbox.set_collision_layer_value(2, true)
+		hurtbox.set_collision_layer_value(6, false)
+	elif polarity == Globals.Polarity.BLUE:
+		hurtbox.set_collision_layer_value(2, false)
+		hurtbox.set_collision_layer_value(6, true)
 
 func change_health(amount: int):
 	health += amount
