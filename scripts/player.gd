@@ -96,7 +96,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 
 func fire():
 	if laser_manager and fire_timer >= fire_delay:
-		laser_manager.fire_laser(global_position, polarity)
+		laser_manager.fire_laser(global_position, polarity, player_number)
 		fire_timer = 0.0
 
 func action():

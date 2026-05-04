@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://c04mqx6ntmd8h"]
+
+[ext_resource type="Script" uid="uid://cql525ofss4hj" path="res://scripts/score_overlay.gd" id="1_mspro"]
+[ext_resource type="FontFile" uid="uid://dkb26snbvno7e" path="res://assets/kenney_space-shooter-remastered/Bonus/kenvector_future.ttf" id="2_jrum0"]
+[ext_resource type="FontFile" uid="uid://cdit44gmuwa42" path="res://assets/kenney_space-shooter-remastered/Bonus/kenvector_future_thin.ttf" id="3_r8n1x"]
+
+[node name="Score Overlay" type="CanvasLayer" unique_id=1629194483]
+script = ExtResource("1_mspro")
+
+[node name="HUD" type="MarginContainer" parent="." unique_id=1851073472]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD" unique_id=1696869395]
+layout_mode = 2
+
+[node name="P1ScoreContainer" type="VBoxContainer" parent="HUD/HBoxContainer" unique_id=128440215]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="HUD/HBoxContainer/P1ScoreContainer" unique_id=220954393]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jrum0")
+theme_override_font_sizes/font_size = 48
+text = "PLAYER 1"
+
+[node name="ScoreLabel" type="RichTextLabel" parent="HUD/HBoxContainer/P1ScoreContainer" unique_id=1723740323]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_r8n1x")
+theme_override_font_sizes/normal_font_size = 61
+text = "0"
+
+[node name="Spacer" type="Control" parent="HUD/HBoxContainer" unique_id=1918456136]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="P2ScoreContainer" type="VBoxContainer" parent="HUD/HBoxContainer" unique_id=1842124305]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="HUD/HBoxContainer/P2ScoreContainer" unique_id=956269924]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jrum0")
+theme_override_font_sizes/font_size = 48
+text = "PLAYER 2"
+horizontal_alignment = 2
+
+[node name="ScoreLabel" type="RichTextLabel" parent="HUD/HBoxContainer/P2ScoreContainer" unique_id=376837676]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_r8n1x")
+theme_override_font_sizes/normal_font_size = 61
+text = "0"

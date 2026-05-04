@@ -5,6 +5,7 @@ extends Area2D
 
 @export var speed: float = 800
 var polarity: Globals.Polarity
+var shooter_id: int
 
 func _ready() -> void:
 	if polarity == Globals.Polarity.RED:

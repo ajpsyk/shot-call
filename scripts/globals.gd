@@ -4,6 +4,9 @@ enum Polarity { RED, BLUE }
 
 var spawn_points: Array[Marker2D] = [null, null, null]
 
+var player_1_score: int = 0
+var player_2_score: int = 0
+
 
 func get_spawn_point(player_number: int) -> Vector2:
 	# Get cached spawn point if known

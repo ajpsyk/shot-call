@@ -47,9 +47,17 @@ func _on_area_entered(area: Area2D) -> void:
 			hit_points -= 1
 			flash_effect()
 			if hit_points <= 0:
+				award_points(area.shooter_id)
 				queue_free()
 		else:
 			deflect_effect()	
+
+func award_points(id: int) -> void:
+	if id == 1:
+		Globals.player_1_score += score_value
+	elif id == 2:
+		Globals.player_2_score += score_value
+	print("Point for Player ", id)
 
 func flash_effect() -> void:
 	var tween = create_tween()
