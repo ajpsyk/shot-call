@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ci4tqf6b4leaa"]
+
+[ext_resource type="Script" uid="uid://bx5lxucrgewnm" path="res://scripts/basic_enemy.gd" id="1_md22f"]
+[ext_resource type="Texture2D" uid="uid://gvjti5ysdfmn" path="res://assets/kenney_space-shooter-remastered/PNG/Enemies/enemyBlue3.png" id="2_fn5nn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ca42v"]
+radius = 48.83646
+
+[node name="BasicEnemy" type="CharacterBody2D" unique_id=701006875]
+collision_layer = 204
+collision_mask = 35
+script = ExtResource("1_md22f")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=184503154]
+texture = ExtResource("2_fn5nn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2032022063]
+shape = SubResource("CircleShape2D_ca42v")
