@@ -5,20 +5,22 @@
 [ext_resource type="Texture2D" uid="uid://dlyxecxxgt6m" path="res://assets/kenney_space-shooter-remastered/PNG/playerShip3_blue.png" id="3_1yqc4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1yqc4"]
-radius = 24.0
+radius = 22.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_esgq3"]
-radius = 36.0
+radius = 25.179358
 
 [node name="Player" type="CharacterBody2D" unique_id=2145724321 groups=["Player"]]
 collision_mask = 16
 script = ExtResource("1_mvpqy")
 
 [node name="RedShipSprite" type="Sprite2D" parent="." unique_id=399893877]
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_5c43a")
 
 [node name="BlueShipSprite" type="Sprite2D" parent="." unique_id=284621941]
 visible = false
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_1yqc4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=46676515]
