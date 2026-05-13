@@ -13,19 +13,19 @@
 [ext_resource type="Resource" uid="uid://25llfmmrvjle" path="res://resources/med_meteoroid_2.tres" id="12_1kice"]
 [ext_resource type="Resource" uid="uid://cxtmr8ebqgba3" path="res://resources/small_meteoroid_1.tres" id="13_5newe"]
 [ext_resource type="Resource" uid="uid://c6h2cn4wcs7tq" path="res://resources/small_meteoroid_2.tres" id="14_37s47"]
-[ext_resource type="PackedScene" uid="uid://cqj0osawxost" path="res://scenes/score_overlay.tscn" id="14_trtic"]
+[ext_resource type="PackedScene" uid="uid://c04mqx6ntmd8h" path="res://scenes/score_overlay.tscn" id="14_trtic"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
 [node name="game" type="Node2D" unique_id=1924521991]
 
 [node name="Player1Spawn" type="Marker2D" parent="." unique_id=1692881551]
-position = Vector2(270, 1650)
-gizmo_extents = 60.0
+position = Vector2(100, 860)
+gizmo_extents = 100.0
 
 [node name="Player2Spawn" type="Marker2D" parent="." unique_id=463786856]
-position = Vector2(810, 1650)
-gizmo_extents = 60.0
+position = Vector2(440, 860)
+gizmo_extents = 100.0
 
 [node name="Player1" parent="." unique_id=2145724321 node_paths=PackedStringArray("laser_manager") instance=ExtResource("1_uwrxv")]
 position = Vector2(133, 1833)
@@ -47,7 +47,7 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_uwrxv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder/StaticBody2D" unique_id=635149500]
-polygon = PackedVector2Array(-20, 0, 1080, 0, 1080, 1920, 0, 1920, 0, 0, -20, 0, -20, 1940, 1100, 1940, 1100, -20, -20, -20)
+polygon = PackedVector2Array(-20, 0, 540, 0, 540, 960, 0, 960, 0, 0, -20, 0, -20, 980, 560, 980, 560, -20, -20, -20)
 
 [node name="LaserManager" parent="." unique_id=1663080434 instance=ExtResource("3_lbhrr")]
 laser_scene = ExtResource("1_lnu2h")
@@ -58,3 +58,6 @@ MEDIUM_METEOROIDS = Array[ExtResource("6_trtic")]([ExtResource("11_264po"), ExtR
 SMALL_METEOROIDS = Array[ExtResource("6_trtic")]([ExtResource("13_5newe"), ExtResource("14_37s47")])
 
 [node name="Score Overlay" parent="." unique_id=1629194483 instance=ExtResource("14_trtic")]
+offset = Vector2(50, 0)
+scale = Vector2(0.8, 0.8)
+transform = Transform2D(0.8, 0, 0, 0.8, 50, 0)
