@@ -31,6 +31,7 @@ window/handheld/orientation=1
 Enemy=""
 Player=""
 Laser=""
+EnemyAtk=""
 
 [input]
 

@@ -1,18 +1,35 @@
 [gd_scene format=3 uid="uid://ci4tqf6b4leaa"]
 
 [ext_resource type="Script" uid="uid://bx5lxucrgewnm" path="res://scripts/basic_enemy.gd" id="1_md22f"]
-[ext_resource type="Texture2D" uid="uid://gvjti5ysdfmn" path="res://assets/kenney_space-shooter-remastered/PNG/Enemies/enemyBlue3.png" id="2_fn5nn"]
+[ext_resource type="PackedScene" uid="uid://xvhbv1jska1y" path="res://scenes/enemy_laser.tscn" id="2_aft7j"]
+[ext_resource type="Texture2D" uid="uid://c25254n5s8lhu" path="res://assets/kenney_space-shooter-remastered/PNG/Enemies/enemyBlack3.png" id="3_aft7j"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ca42v"]
-radius = 48.83646
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aft7j"]
+radius = 34.0
+height = 100.0
 
 [node name="BasicEnemy" type="CharacterBody2D" unique_id=701006875]
 collision_layer = 204
-collision_mask = 35
+collision_mask = 34
 script = ExtResource("1_md22f")
+laser_scene = ExtResource("2_aft7j")
+move_speed = 200.0
+max_health = 4
+score_value = 400
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=184503154]
-texture = ExtResource("2_fn5nn")
+texture = ExtResource("3_aft7j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2032022063]
-shape = SubResource("CircleShape2D_ca42v")
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1197921587]
+collision_layer = 0
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=815100118]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_aft7j")
+
+[node name="LaserFireTimer" type="Timer" parent="." unique_id=2113266363]
+autostart = true
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="LaserFireTimer" to="." method="_on_laser_fire_timer_timeout"]
