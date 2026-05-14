@@ -1,11 +1,12 @@
 extends Area2D
 
-@onready var redLaser: Sprite2D = $RedLaser
-@onready var blueLaser: Sprite2D = $BlueLaser
-
-@export var speed: float = 800
+@export var move_speed: float = 800
 var polarity: Globals.Polarity
 var shooter_id: int
+var velocity: Vector2
+
+@onready var redLaser: Sprite2D = $RedLaser
+@onready var blueLaser: Sprite2D = $BlueLaser
 
 func _ready() -> void:
 	if polarity == Globals.Polarity.RED:
@@ -14,11 +15,11 @@ func _ready() -> void:
 	else:
 		redLaser.visible = false
 		blueLaser.visible = true
-	
-	
+	velocity = Vector2.UP * move_speed
+
 
 func _physics_process(delta: float) -> void:
-	position += Vector2.UP * speed * delta
+	position += velocity * delta
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
