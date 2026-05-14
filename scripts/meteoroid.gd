@@ -1,18 +1,23 @@
-extends Area2D
+# A basic enemy which moves in a straight line from the top to the bottom of the screen.
+extends Enemy
 
-@export var min_speed: float
-@export var max_speed: float
+
+# ~~~~~ VARIABLES ~~~~~
+
+# This enemy does not use Enemy.move_speed.
+@export var min_speed: float = 80
+@export var max_speed: float = 150
 @export var hit_points: int
 
-var speed: float = 0.0
 var sprite: Texture2D
 var hitbox: float
-var score_value: int = 0
-var polarity: Globals.Polarity
+
 const COLOR_BLUE = Color(0.2, 0.5, 1.0)
 const COLOR_RED = Color(1.0, 0.2, 0.2)
 
+@onready var spriteNode: Sprite2D = $Sprite2D
 
+# ~~~~~ FUNCTIONALITY ~~~~~
 
 func init(texture, radius, score) -> void:
 	sprite = texture
@@ -20,10 +25,13 @@ func init(texture, radius, score) -> void:
 	score_value = score
 	
 func _ready() -> void:
+	print("Spawned meteoroid")
 	$Sprite2D.texture = sprite
-	$CollisionShape2D.shape.radius = hitbox
-	speed = randf_range(min_speed, max_speed)
-	polarity = Globals.Polarity.values().pick_random()
+	$Hurtbox/CollisionShape2D.shape.radius = hitbox
+	velocity = Vector2.DOWN * randf_range(min_speed, max_speed)
+	print("Velocity: ", velocity)
+	
+	set_random_polarity()
 	if polarity == Globals.Polarity.RED:
 		modulate = COLOR_RED
 		set_collision_layer_value(3, true)
@@ -32,32 +40,22 @@ func _ready() -> void:
 		set_collision_layer_value(7, true)
 	
 func _physics_process(delta: float) -> void:
-	position.y += speed * delta
-	
+	move_and_slide()
 	if position.y > get_viewport_rect().size.y + 100:
 		queue_free()
 
-func _on_area_entered(area: Area2D) -> void:
-		
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Player"):
 		queue_free()
 	
 	if area.is_in_group("Laser"):
 		if area.polarity == polarity:
-			hit_points -= 1
+			change_health(-1, area)
 			flash_effect()
-			if hit_points <= 0:
-				award_points(area.shooter_id)
-				queue_free()
 		else:
-			deflect_effect()	
+			deflect_effect()
 
-func award_points(id: int) -> void:
-	if id == 1:
-		Globals.player_1_score += score_value
-	elif id == 2:
-		Globals.player_2_score += score_value
-	print("Point for Player ", id)
 
 func flash_effect() -> void:
 	var tween = create_tween()
@@ -67,6 +65,5 @@ func flash_effect() -> void:
 
 func deflect_effect() -> void:
 	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector2(1.2, 1.2), 0.05)
-	tween.tween_property(self, "scale", Vector2(1.0, 1.0), 0.1)
-	
+	tween.tween_property(spriteNode, "scale", Vector2(1.2, 1.2), 0.05)
+	tween.tween_property(spriteNode, "scale", Vector2(1.0, 1.0), 0.1)

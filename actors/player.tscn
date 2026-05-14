@@ -11,6 +11,7 @@ radius = 22.0
 radius = 25.179358
 
 [node name="Player" type="CharacterBody2D" unique_id=2145724321 groups=["Player"]]
+collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_mvpqy")
 
@@ -27,7 +28,6 @@ texture = ExtResource("3_1yqc4")
 shape = SubResource("CircleShape2D_1yqc4")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=255519528]
-collision_layer = 0
 collision_mask = 204
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=198870824]
