@@ -1,6 +1,6 @@
 extends Node
 
-enum Polarity { RED, BLUE }
+enum Polarity { NONE, RED, BLUE }
 
 var spawn_points: Array[Marker2D] = [null, null, null]
 
