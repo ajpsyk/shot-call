@@ -8,7 +8,7 @@
 radius = 34.0
 height = 100.0
 
-[node name="BasicEnemy" type="CharacterBody2D" unique_id=701006875]
+[node name="BasicEnemy" type="CharacterBody2D" unique_id=701006875 node_paths=PackedStringArray("sprite", "hurtbox")]
 collision_layer = 204
 collision_mask = 34
 script = ExtResource("1_md22f")
@@ -16,6 +16,8 @@ laser_scene = ExtResource("2_aft7j")
 move_speed = 200.0
 max_health = 4
 score_value = 400
+sprite = NodePath("Sprite2D")
+hurtbox = NodePath("Hurtbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=184503154]
 texture = ExtResource("3_aft7j")
@@ -31,5 +33,4 @@ shape = SubResource("CapsuleShape2D_aft7j")
 [node name="LaserFireTimer" type="Timer" parent="." unique_id=2113266363]
 autostart = true
 
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="LaserFireTimer" to="." method="_on_laser_fire_timer_timeout"]
