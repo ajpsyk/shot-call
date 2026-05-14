@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed: float = 800
+@export var move_speed: float = 800
 var polarity: Globals.Polarity
 var velocity: Vector2
 
@@ -14,7 +14,7 @@ func _ready() -> void:
 	else:
 		redLaser.visible = false
 		blueLaser.visible = true
-	velocity = Vector2.DOWN * speed
+	velocity = Vector2.DOWN * move_speed
 
 
 func _physics_process(delta: float) -> void:
@@ -22,7 +22,6 @@ func _physics_process(delta: float) -> void:
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
-
 
 func _on_area_entered(_area: Area2D) -> void:
 	queue_free()
