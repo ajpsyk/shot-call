@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://tetm1bl8lfp8"]
+
+[ext_resource type="Script" uid="uid://2c32wbwfbhac" path="res://scripts/meteoroid.gd" id="1_dpgfl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dlr3y"]
+
+[node name="Meteoroid" type="CharacterBody2D" unique_id=837944748 node_paths=PackedStringArray("sprite", "hurtbox")]
+script = ExtResource("1_dpgfl")
+sprite = NodePath("Sprite2D")
+hurtbox = NodePath("Hurtbox")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1453416082]
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=559024023 groups=["Enemy"]]
+z_index = 10
+collision_layer = 68
+collision_mask = 51
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=405041427]
+shape = SubResource("CircleShape2D_dlr3y")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

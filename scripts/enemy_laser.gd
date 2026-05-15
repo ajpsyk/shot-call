@@ -2,7 +2,6 @@ extends Area2D
 
 @export var move_speed: float = 800
 var polarity: Globals.Polarity
-var shooter_id: int
 var velocity: Vector2
 
 @onready var redLaser: Sprite2D = $RedLaser
@@ -15,7 +14,7 @@ func _ready() -> void:
 	else:
 		redLaser.visible = false
 		blueLaser.visible = true
-	velocity = Vector2.UP * move_speed
+	velocity = Vector2.DOWN * move_speed
 
 
 func _physics_process(delta: float) -> void:
