@@ -21,11 +21,10 @@ func init(texture, radius, score) -> void:
 	
 func _ready() -> void:
 	super()
-	print("Spawned meteoroid")
+	
 	sprite.texture = texture_to_use
 	$Hurtbox/CollisionShape2D.shape.radius = hitbox
 	velocity = Vector2.DOWN * randf_range(min_speed, max_speed)
-	print("Velocity: ", velocity)
 	
 	set_random_polarity()
 	if polarity == Globals.Polarity.RED:
@@ -35,7 +34,7 @@ func _ready() -> void:
 		sprite.modulate = COLOR_BLUE
 		set_collision_layer_value(7, true)
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	if position.y > get_viewport_rect().size.y + 100:
 		queue_free()

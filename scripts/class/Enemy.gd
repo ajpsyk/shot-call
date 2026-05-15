@@ -33,7 +33,7 @@ func _ready() -> void:
 	if !hurtbox.area_entered.has_connections():
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	pass
 
 

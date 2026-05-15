@@ -36,11 +36,14 @@ func _ready():
 		sprite.modulate = COLOR_BLUE
 
 func _physics_process(delta: float) -> void:
-	position.y = move_toward(position.y, dist_from_top, move_speed/2*delta)
-	if position.x < left_edge:
+	if !is_equal_approx(position.y, dist_from_top):
+		position.y = move_toward(position.y, dist_from_top, move_speed*delta)
+	elif position.x < left_edge:
 		velocity.x = move_speed
 	elif position.x > right_edge:
 		velocity.x = -move_speed
+	elif abs(velocity.x) != move_speed:
+		velocity.x = move_speed
 
 	move_and_slide()
 
