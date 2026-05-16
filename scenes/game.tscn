@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://co6oduk3i6bfl"]
 
+[ext_resource type="Script" uid="uid://cbhjb35kbxid6" path="res://scripts/game.gd" id="1_ir15t"]
 [ext_resource type="PackedScene" uid="uid://xb38s4s5lhjs" path="res://scenes/laser.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://buwwawpf4y78f" path="res://actors/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://b6mm1l2f6ynx3" path="res://scenes/laser_manager.tscn" id="3_lbhrr"]
@@ -18,6 +19,7 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
 [node name="game" type="Node2D" unique_id=1924521991]
+script = ExtResource("1_ir15t")
 
 [node name="Player1Spawn" type="Marker2D" parent="." unique_id=1692881551]
 position = Vector2(100, 860)
