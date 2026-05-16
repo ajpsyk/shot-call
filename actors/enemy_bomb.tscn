@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bnt648rt7cqxs"]
+
+[ext_resource type="Script" uid="uid://m0tc7ryrtet7" path="res://scripts/enemy_bomb.gd" id="1_733xr"]
+[ext_resource type="Texture2D" uid="uid://dkt1wueeaby3k" path="res://assets/kenney_space-shooter-remastered/PNG/Enemies/enemyBlack4.png" id="2_cgh8r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgh8r"]
+radius = 45.27447
+
+[node name="EnemyBomb" type="CharacterBody2D" unique_id=1377408971 node_paths=PackedStringArray("sprite", "hurtbox")]
+script = ExtResource("1_733xr")
+sprite = NodePath("Sprite2D")
+hurtbox = NodePath("Hurtbox")
+metadata/_custom_type_script = "uid://djt6iihvxwrut"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1038265329]
+texture = ExtResource("2_cgh8r")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=621957252]
+position = Vector2(0, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1310818143]
+shape = SubResource("CircleShape2D_cgh8r")
