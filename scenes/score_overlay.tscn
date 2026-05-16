@@ -7,51 +7,41 @@
 [node name="Score Overlay" type="CanvasLayer" unique_id=1629194483]
 script = ExtResource("1_mspro")
 
-[node name="HUD" type="MarginContainer" parent="." unique_id=1851073472]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 40
-theme_override_constants/margin_right = 40
+[node name="P1ScoreContainer" type="VBoxContainer" parent="." unique_id=128440215]
+offset_left = -36.0
+offset_top = -1.0
+offset_right = 238.0
+offset_bottom = 955.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD" unique_id=1696869395]
-layout_mode = 2
-
-[node name="P1ScoreContainer" type="VBoxContainer" parent="HUD/HBoxContainer" unique_id=128440215]
-layout_mode = 2
-
-[node name="NameLabel" type="Label" parent="HUD/HBoxContainer/P1ScoreContainer" unique_id=220954393]
+[node name="P1Label" type="Label" parent="P1ScoreContainer" unique_id=220954393]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jrum0")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 40
 text = "PLAYER 1"
 
-[node name="ScoreLabel" type="RichTextLabel" parent="HUD/HBoxContainer/P1ScoreContainer" unique_id=1723740323]
+[node name="P1ScoreLabel" type="RichTextLabel" parent="P1ScoreContainer" unique_id=1723740323]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_r8n1x")
-theme_override_font_sizes/normal_font_size = 61
+theme_override_font_sizes/normal_font_size = 46
 text = "0"
 
-[node name="Spacer" type="Control" parent="HUD/HBoxContainer" unique_id=1918456136]
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="P2ScoreContainer" type="VBoxContainer" parent="." unique_id=1842124305]
+offset_left = 357.0
+offset_top = -2.0
+offset_right = 600.0
+offset_bottom = 957.0
 
-[node name="P2ScoreContainer" type="VBoxContainer" parent="HUD/HBoxContainer" unique_id=1842124305]
-layout_mode = 2
-
-[node name="NameLabel" type="Label" parent="HUD/HBoxContainer/P2ScoreContainer" unique_id=956269924]
+[node name="P2Label" type="Label" parent="P2ScoreContainer" unique_id=956269924]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jrum0")
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 40
 text = "PLAYER 2"
 horizontal_alignment = 2
 
-[node name="ScoreLabel" type="RichTextLabel" parent="HUD/HBoxContainer/P2ScoreContainer" unique_id=376837676]
+[node name="P2ScoreLabel" type="RichTextLabel" parent="P2ScoreContainer" unique_id=376837676]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("3_r8n1x")
-theme_override_font_sizes/normal_font_size = 61
+theme_override_font_sizes/normal_font_size = 46
 text = "0"

@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://co6oduk3i6bfl"]
 
+[ext_resource type="Script" uid="uid://cbhjb35kbxid6" path="res://scripts/game.gd" id="1_ir15t"]
 [ext_resource type="PackedScene" uid="uid://xb38s4s5lhjs" path="res://scenes/laser.tscn" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://buwwawpf4y78f" path="res://actors/player.tscn" id="1_uwrxv"]
+[ext_resource type="Texture2D" uid="uid://dhwoi80ukym2r" path="res://assets/kenney_space-shooter-remastered/Backgrounds/background 1.png" id="2_ca42v"]
 [ext_resource type="PackedScene" uid="uid://b6mm1l2f6ynx3" path="res://scenes/laser_manager.tscn" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://8u04i3lelg5f" path="res://scenes/meteoroid_manager.tscn" id="5_iywne"]
 [ext_resource type="Script" uid="uid://8bufnbxor5d4" path="res://resources/meteroid_data.gd" id="6_trtic"]
@@ -18,6 +20,12 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
 [node name="game" type="Node2D" unique_id=1924521991]
+script = ExtResource("1_ir15t")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2024857665]
+position = Vector2(265, -1117.0001)
+scale = Vector2(0.6450777, 0.49566084)
+texture = ExtResource("2_ca42v")
 
 [node name="Player1Spawn" type="Marker2D" parent="." unique_id=1692881551]
 position = Vector2(100, 860)

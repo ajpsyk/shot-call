@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://chwwnjdpsmiqy"]
+
+[ext_resource type="Script" uid="uid://dh24rcva2f8xg" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Texture2D" uid="uid://dhwoi80ukym2r" path="res://assets/kenney_space-shooter-remastered/Backgrounds/background 1.png" id="2_ekxnf"]
+[ext_resource type="FontFile" uid="uid://dkb26snbvno7e" path="res://assets/kenney_space-shooter-remastered/Bonus/kenvector_future.ttf" id="3_bqqt6"]
+[ext_resource type="Script" uid="uid://dnxtdkwb8ooko" path="res://scripts/button_manager.gd" id="3_rtw2f"]
+[ext_resource type="FontFile" uid="uid://cdit44gmuwa42" path="res://assets/kenney_space-shooter-remastered/Bonus/kenvector_future_thin.ttf" id="3_wu84c"]
+[ext_resource type="Texture2D" uid="uid://bncy1yp3y4sxm" path="res://assets/kenney_space-shooter-remastered/PNG/Effects/star1.png" id="5_oa1go"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7b55j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtw2f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dd4i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbmy8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rcqid"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oa1go"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgwnu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jk1qb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ajci"]
+
+[sub_resource type="Theme" id="Theme_wu84c"]
+
+[node name="Main Menu" type="Node2D" unique_id=576562020]
+position = Vector2(4, 8)
+script = ExtResource("1_l6cm7")
+
+[node name="Background1" type="Sprite2D" parent="." unique_id=1306607259]
+position = Vector2(271, 482)
+scale = Vector2(0.5927462, 0.11856457)
+texture = ExtResource("2_ekxnf")
+
+[node name="Button Manager" type="Control" parent="." unique_id=1141087136]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 186.0
+offset_bottom = 92.0
+script = ExtResource("3_rtw2f")
+
+[node name="Single Player" type="Button" parent="Button Manager" unique_id=598656610]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 4.306
+anchor_bottom = 1.7810001
+offset_left = 127.0
+offset_top = 315.0
+offset_right = -415.91602
+offset_bottom = 256.14798
+theme_override_fonts/font = ExtResource("3_wu84c")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8ln24")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7b55j")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_flqon")
+text = "Single Player"
+
+[node name="Co-op" type="Button" parent="Button Manager" unique_id=2131043018]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 399.0
+offset_right = 313.0
+offset_bottom = 526.0
+theme_override_fonts/font = ExtResource("3_wu84c")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rtw2f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5dd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tbmy8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rcqid")
+text = "Co-op"
+
+[node name="Quit" type="Button" parent="Button Manager" unique_id=228762132]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 522.0
+offset_right = 296.0
+offset_bottom = 587.0
+theme_override_fonts/font = ExtResource("3_wu84c")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_oa1go")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lgwnu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jk1qb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1ajci")
+text = "Quit"
+
+[node name="Star" type="TextureRect" parent="Button Manager" unique_id=384433509]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_oa1go")
+
+[node name="Title" type="Label" parent="." unique_id=2059537847]
+offset_left = 50.0
+offset_top = 180.0
+offset_right = 499.0
+offset_bottom = 254.0
+theme = SubResource("Theme_wu84c")
+theme_override_fonts/font = ExtResource("3_bqqt6")
+theme_override_font_sizes/font_size = 65
+text = "Shot Call"
+
+[connection signal="pressed" from="Button Manager/Single Player" to="." method="_on_single_player_pressed"]
+[connection signal="pressed" from="Button Manager/Co-op" to="." method="_on_coop_pressed"]
+[connection signal="pressed" from="Button Manager/Quit" to="." method="_on_quit_pressed"]
