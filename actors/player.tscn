@@ -11,7 +11,6 @@ radius = 22.0
 radius = 25.179358
 
 [node name="Player" type="CharacterBody2D" unique_id=2145724321 groups=["Player"]]
-collision_layer = 0
 collision_mask = 16
 script = ExtResource("1_mvpqy")
 
