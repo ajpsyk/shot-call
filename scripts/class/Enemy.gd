@@ -40,7 +40,6 @@ func _physics_process(_delta: float) -> void:
 # Overridable Helper Functions
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("Enemy area function")
 	if area.is_in_group("Laser"):
 		if polarity == Globals.Polarity.NONE or ("polarity" in area and area.polarity == polarity):
 			change_health(-1, area)
