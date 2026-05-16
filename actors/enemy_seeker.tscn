@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bnt648rt7cqxs"]
 
-[ext_resource type="Script" uid="uid://m0tc7ryrtet7" path="res://scripts/enemy_bomb.gd" id="1_733xr"]
+[ext_resource type="Script" uid="uid://m0tc7ryrtet7" path="res://scripts/enemy_seeker.gd" id="1_733xr"]
 [ext_resource type="Texture2D" uid="uid://dkt1wueeaby3k" path="res://assets/kenney_space-shooter-remastered/PNG/Enemies/enemyBlack4.png" id="2_cgh8r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cgh8r"]
