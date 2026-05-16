@@ -4,7 +4,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dlr3y"]
 
-[node name="Meteoroid" type="CharacterBody2D" unique_id=837944748 node_paths=PackedStringArray("sprite", "hurtbox")]
+[node name="Meteoroid" type="CharacterBody2D" unique_id=837944748 node_paths=PackedStringArray("sprite", "hurtbox") groups=["Enemy"]]
+collision_layer = 68
+collision_mask = 68
 script = ExtResource("1_dpgfl")
 sprite = NodePath("Sprite2D")
 hurtbox = NodePath("Hurtbox")
@@ -14,7 +16,7 @@ hurtbox = NodePath("Hurtbox")
 [node name="Hurtbox" type="Area2D" parent="." unique_id=559024023 groups=["Enemy"]]
 z_index = 10
 collision_layer = 68
-collision_mask = 51
+collision_mask = 35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=405041427]
 shape = SubResource("CircleShape2D_dlr3y")

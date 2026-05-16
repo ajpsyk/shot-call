@@ -41,7 +41,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("Meteoroid hurtbox area function")
 	if area.get_parent().is_in_group("Player"):
 		queue_free()
 	# calls the base version of this function
