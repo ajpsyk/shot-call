@@ -86,9 +86,7 @@ func _input(event: InputEvent) -> void:
 			_ready()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	print("[Player] Area entered")
 	if area.is_in_group("Enemy") or area.is_in_group("EnemyAtk"):
-		print("[Player] Area is an enemy or enemy atk")
 		# If area has polarity (e.g. area is an enemy laser)
 		if "polarity" in area:
 			if area.polarity != polarity:
