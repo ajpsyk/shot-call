@@ -9,6 +9,8 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pajh"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7b55j"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_flqon"]
@@ -59,6 +61,7 @@ offset_bottom = 256.14798
 theme_override_fonts/font = ExtResource("3_wu84c")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8ln24")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5pajh")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_7b55j")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_flqon")
 text = "Single Player"
