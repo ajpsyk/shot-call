@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cetpev5qklg3w"
+path="res://.godot/imported/Randomize76.wav-555fd947a3c0aaba835dd00016cdb140.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/1/Randomize76.wav"
+dest_files=["res://.godot/imported/Randomize76.wav-555fd947a3c0aaba835dd00016cdb140.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

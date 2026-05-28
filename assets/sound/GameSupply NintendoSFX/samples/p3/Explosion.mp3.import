@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bp3smbt1an4rj"
+path="res://.godot/imported/Explosion.mp3-c09cd4f2f6d5c0b822368adb3cf4de20.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/samples/p3/Explosion.mp3"
+dest_files=["res://.godot/imported/Explosion.mp3-c09cd4f2f6d5c0b822368adb3cf4de20.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

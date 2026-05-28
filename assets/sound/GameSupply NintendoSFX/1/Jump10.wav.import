@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://blexrarr38pfj"
+path="res://.godot/imported/Jump10.wav-38e6b4cf920e2a84532120f301ae7c82.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/1/Jump10.wav"
+dest_files=["res://.godot/imported/Jump10.wav-38e6b4cf920e2a84532120f301ae7c82.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

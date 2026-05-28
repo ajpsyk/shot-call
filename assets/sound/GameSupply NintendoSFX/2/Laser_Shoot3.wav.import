@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://len3wyqjvhs5"
+path="res://.godot/imported/Laser_Shoot3.wav-8e913c33ea16eb73aeeffe78531c0a36.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/2/Laser_Shoot3.wav"
+dest_files=["res://.godot/imported/Laser_Shoot3.wav-8e913c33ea16eb73aeeffe78531c0a36.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

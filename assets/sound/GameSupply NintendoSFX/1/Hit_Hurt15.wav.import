@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dg5unqdxomfpy"
+path="res://.godot/imported/Hit_Hurt15.wav-0bcb5f4cde5ea5e8bf1c7620f3d298ed.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/1/Hit_Hurt15.wav"
+dest_files=["res://.godot/imported/Hit_Hurt15.wav-0bcb5f4cde5ea5e8bf1c7620f3d298ed.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

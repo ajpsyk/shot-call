@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vjagpl08uw4t"
+path="res://.godot/imported/Laser_Shoot14.wav-0ae8048c996051741cd8bd5f8c840a8c.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/1/Laser_Shoot14.wav"
+dest_files=["res://.godot/imported/Laser_Shoot14.wav-0ae8048c996051741cd8bd5f8c840a8c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

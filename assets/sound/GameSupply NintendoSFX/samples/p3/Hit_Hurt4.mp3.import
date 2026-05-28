@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://0gon4si1aqvs"
+path="res://.godot/imported/Hit_Hurt4.mp3-ef3a5cd992b417ba32c47379243e3240.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/samples/p3/Hit_Hurt4.mp3"
+dest_files=["res://.godot/imported/Hit_Hurt4.mp3-ef3a5cd992b417ba32c47379243e3240.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
