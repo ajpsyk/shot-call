@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxbsfa2lsxy42"
+path="res://.godot/imported/Hit_Hurt13.wav-5c06728a1867728ca50dd4af304bfd86.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/1/Hit_Hurt13.wav"
+dest_files=["res://.godot/imported/Hit_Hurt13.wav-5c06728a1867728ca50dd4af304bfd86.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

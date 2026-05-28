@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ceuyd6pkc4d0i"
+path="res://.godot/imported/Powerup21.wav-67c86421ac981317841a88494d314777.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/1/Powerup21.wav"
+dest_files=["res://.godot/imported/Powerup21.wav-67c86421ac981317841a88494d314777.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

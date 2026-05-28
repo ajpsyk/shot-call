@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://jya6it6vct4w"
+path="res://.godot/imported/Blip_Select16.wav-59b36a81de30368af3b15f48ea7b91d9.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/1/Blip_Select16.wav"
+dest_files=["res://.godot/imported/Blip_Select16.wav-59b36a81de30368af3b15f48ea7b91d9.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
