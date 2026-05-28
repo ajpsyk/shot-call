@@ -36,6 +36,7 @@ var dead: bool = false
 # ~ Godot Overrides ~
 
 func _ready() -> void:
+	Globals.players.append(self)
 	health = max_health
 	update_ship_sprite()
 	update_hurtbox_polarity()
@@ -144,6 +145,7 @@ func change_health(amount: int):
 		die()
 
 func die():
+	Globals.players.erase(self)
 	dead = true
 	blue_ship_sprite.set_visible(false)
 	red_ship_sprite.set_visible(false)
