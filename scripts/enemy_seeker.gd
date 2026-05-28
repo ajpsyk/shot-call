@@ -8,10 +8,7 @@ extends Enemy
 ## How many projectiles the Seeker will spawn when triggered.
 @export var projectile_count: int = 8
 ## The speed multiplier the Seeker gains when rushing a player.
-@export var pursuit_speed_factor: float = 4.0
-var curr_speed: float
-## The speed at which the Seeker can rotate in radians/sec.
-# @export var rotation_speed: float = TAU
+@export var pursuit_speed_factor: float = 3.0
 
 @export var projectile_scene: PackedScene
 
@@ -29,19 +26,12 @@ var pursued_player: CharacterBody2D
 func _ready() -> void:
 	super()
 
-	curr_speed = move_speed
+	curr_speed = base_speed
 	rotate(PI/2)
-	
-	if polarity == Globals.Polarity.NONE:
-		set_random_polarity()
-	
-	if polarity == Globals.Polarity.RED:
-		sprite.modulate = COLOR_RED
-	else:
-		sprite.modulate = COLOR_BLUE
-
-func _physics_process(delta: float) -> void:
+	set_random_polarity()
 	velocity = Vector2.DOWN * curr_speed
+
+func _physics_process(_delta: float) -> void:
 	if in_pursuit_mode:
 		look_at(pursued_player.position)
 		velocity = Vector2.from_angle(rotation) * curr_speed
@@ -58,12 +48,13 @@ func _on_targeting_area_body_entered(body: Node2D) -> void:
 		curr_speed = 0
 		on_target_wait_timer.start()
 		await on_target_wait_timer.timeout
-		curr_speed = move_speed * pursuit_speed_factor
+		curr_speed = base_speed * pursuit_speed_factor
 
 # Trigger explosion when player is in range
 func _on_trigger_area_body_entered(body: Node2D) -> void:
-	curr_speed = 0
-	trigger_timer.start()
+	if body.is_in_group("Player"):
+		curr_speed = 0
+		trigger_timer.start()
 
 func _on_trigger_timer_timeout() -> void:
 	for i in range(projectile_count):
