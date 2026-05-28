@@ -1,36 +1,71 @@
-[gd_scene format=3 uid="uid://ddbbyk31ui1xj"]
+[gd_scene format=3 uid="uid://bd52swx5rkn6u"]
 
-[ext_resource type="Script" uid="uid://bx5lxucrgewnm" path="res://scripts/basic_enemy.gd" id="1_0pmct"]
+[ext_resource type="Script" uid="uid://hkt0qaw8h6xf" path="res://scripts/basic_boss.gd" id="1_0pmct"]
 [ext_resource type="PackedScene" uid="uid://xvhbv1jska1y" path="res://scenes/enemy_laser.tscn" id="2_d081i"]
 [ext_resource type="Texture2D" uid="uid://blas5sdm6xvpw" path="res://assets/kenney_space-shooter-remastered/PNG/Enemies/enemyBlack5.png" id="3_0pmct"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aft7j"]
-radius = 34.0
-height = 100.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_0pmct"]
+radius = 76.00658
 
 [node name="EnemyBasicBoss" type="CharacterBody2D" unique_id=701006875 node_paths=PackedStringArray("sprite", "hurtbox") groups=["Enemy"]]
 collision_layer = 204
 collision_mask = 34
+motion_mode = 1
 script = ExtResource("1_0pmct")
+dist_from_top = 220
 laser_scene = ExtResource("2_d081i")
-move_speed = 200.0
-max_health = 4
-score_value = 400
+move_speed = 250.0
+max_health = 100
+score_value = 2000
 sprite = NodePath("Sprite2D")
 hurtbox = NodePath("Hurtbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=184503154]
+rotation = -1.5707964
+scale = Vector2(1.75, 1.75)
 texture = ExtResource("3_0pmct")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1197921587 groups=["Enemy"]]
 collision_layer = 68
 collision_mask = 34
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=815100118]
 rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_aft7j")
+shape = SubResource("CircleShape2D_0pmct")
 
-[node name="LaserFireTimer" type="Timer" parent="." unique_id=2113266363]
+[node name="IntroTimer" type="Timer" parent="." unique_id=1493271691]
+wait_time = 3.0
+one_shot = true
 autostart = true
 
-[connection signal="timeout" from="LaserFireTimer" to="." method="_on_laser_fire_timer_timeout"]
+[node name="PolaritySwapTimer" type="Timer" parent="." unique_id=1699136222]
+wait_time = 3.0
+
+[node name="FireTimer" type="Timer" parent="." unique_id=2113266363]
+wait_time = 0.8
+
+[node name="BasicStateDurationTimer" type="Timer" parent="." unique_id=1007576414]
+wait_time = 10.0
+one_shot = true
+
+[node name="LockOnStateDurationTimer" type="Timer" parent="." unique_id=646854385]
+wait_time = 10.0
+one_shot = true
+
+[node name="LockOnDelayTimer" type="Timer" parent="." unique_id=1671051949]
+wait_time = 2.0
+one_shot = true
+
+[node name="HealthLeft" type="RichTextLabel" parent="." unique_id=650324758]
+offset_left = -24.0
+offset_top = -130.0
+offset_right = 16.0
+offset_bottom = -90.0
+
+[connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]
+[connection signal="timeout" from="PolaritySwapTimer" to="." method="_on_polarity_swap_timer_timeout"]
+[connection signal="timeout" from="FireTimer" to="." method="_on_laser_fire_timer_timeout"]
+[connection signal="timeout" from="BasicStateDurationTimer" to="." method="_on_basic_state_timer_timeout"]
+[connection signal="timeout" from="LockOnStateDurationTimer" to="." method="_on_lock_on_state_duration_timer_timeout"]
+[connection signal="timeout" from="LockOnDelayTimer" to="." method="_on_lock_on_delay_timer_timeout"]

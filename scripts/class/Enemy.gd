@@ -8,13 +8,15 @@ class_name Enemy
 
 ## Speed of movement in pixels/second.
 @export var move_speed: float = 300
+var curr_speed: float = move_speed
 
 @export var max_health: int = 5
-var health: int = max_health
+var health: int
 
 @export var score_value: int = 100
 
 var polarity: Globals.Polarity = Globals.Polarity.NONE
+
 
 # Child Node References
 # Every Enemy is expected to have these nodes for basic functionality.
@@ -24,11 +26,15 @@ var polarity: Globals.Polarity = Globals.Polarity.NONE
 const COLOR_BLUE = Color(0.2, 0.5, 1.0)
 const COLOR_RED = Color(1.0, 0.2, 0.2)
 
+@onready var base_sprite_size: Vector2 = sprite.get("scale")
+
 # ~~~~~ FUNCTIONALITY ~~~~~
 
 # Overridable Node Functions
 
 func _ready() -> void:
+	health = max_health
+
 	# If Hurtbox.area_entered isn't already connected to a custom function, connect it to the default function
 	if !hurtbox.area_entered.has_connections():
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
@@ -56,8 +62,8 @@ func take_damage_effect() -> void:
 
 func absorb_damage_effect() -> void:
 	var tween = create_tween()
-	tween.tween_property(sprite, "scale", Vector2(1.2, 1.2), 0.05)
-	tween.tween_property(sprite, "scale", Vector2(1.0, 1.0), 0.1)
+	tween.tween_property(sprite, "scale", base_sprite_size * 1.2, 0.05)
+	tween.tween_property(sprite, "scale", base_sprite_size, 0.1)
 
 # If overriden, should award points to the player which dealt the final blow.
 func die(damage_source = null) -> void:
