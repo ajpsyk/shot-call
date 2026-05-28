@@ -33,8 +33,8 @@ var targeted_player: CharacterBody2D
 
 var enraged: bool = false
 
-enum BASIC_BOSS_STATE { INTRO, BASIC, LOCK_ON, CHARGE, NONE }
-var curr_state: BASIC_BOSS_STATE = BASIC_BOSS_STATE.INTRO
+enum Basic_Boss_State { INTRO, BASIC, LOCK_ON, CHARGE, NONE }
+var curr_state: Basic_Boss_State = Basic_Boss_State.INTRO
 
 
 # Child Node Refs
@@ -81,12 +81,12 @@ func _physics_process(delta: float) -> void:
 	# Act based on state
 	match curr_state:
 		# Move in from off screen
-		BASIC_BOSS_STATE.INTRO:
+		Basic_Boss_State.INTRO:
 			if !is_equal_approx(position.y, dist_from_top):
 				position.y = move_toward(position.y, dist_from_top, curr_speed*delta/2)
 
 		# Move back and forth, firing at the player
-		BASIC_BOSS_STATE.BASIC:
+		Basic_Boss_State.BASIC:
 			if !is_equal_approx(position.y, dist_from_top):
 				position.y = move_toward(position.y, dist_from_top, curr_speed*delta/2)
 			
@@ -96,12 +96,12 @@ func _physics_process(delta: float) -> void:
 				velocity.x = -curr_speed
 
 		# Lock onto a player and fire bursts of bullets
-		BASIC_BOSS_STATE.LOCK_ON:
+		Basic_Boss_State.LOCK_ON:
 			if targeted_player:
 				look_at(targeted_player.global_position)
 
 		# Lock onto a player and charge at them, then reappear at the top of the screen
-		BASIC_BOSS_STATE.CHARGE:
+		Basic_Boss_State.CHARGE:
 			if !lock_on_delay_timer.is_stopped() and targeted_player:
 				look_at(targeted_player.global_position)
 		
@@ -110,31 +110,31 @@ func _physics_process(delta: float) -> void:
 	if not enraged and health <= max_health * enraged_health_percent:
 		enraged = true
 		curr_speed = base_speed * speed_mult_enraged
-		change_state(BASIC_BOSS_STATE.NONE)
+		change_state(Basic_Boss_State.NONE)
 		animation_player.play("enraged_transition")
 		await animation_player.animation_finished
-		change_state(BASIC_BOSS_STATE.CHARGE)
+		change_state(Basic_Boss_State.CHARGE)
 
 
 # Leaving and entering states
-func change_state(state: BASIC_BOSS_STATE):
-	print("[Basic Boss] Transition from ", BASIC_BOSS_STATE.keys()[curr_state], " to ", BASIC_BOSS_STATE.keys()[state]) #DEBUG
+func change_state(state: Basic_Boss_State):
+	print("[Basic Boss] Transition from ", Basic_Boss_State.keys()[curr_state], " to ", Basic_Boss_State.keys()[state]) #DEBUG
 	# Exit previous state
 	match curr_state:
-		BASIC_BOSS_STATE.INTRO:
+		Basic_Boss_State.INTRO:
 			set_hurtbox_active(true)
 
-		BASIC_BOSS_STATE.BASIC:
+		Basic_Boss_State.BASIC:
 			fire_timer.stop()
 			polarity_swap_timer.stop()
 
-		BASIC_BOSS_STATE.LOCK_ON:
+		Basic_Boss_State.LOCK_ON:
 			fire_timer.stop()
 
-		BASIC_BOSS_STATE.CHARGE:
+		Basic_Boss_State.CHARGE:
 			pass
 
-		BASIC_BOSS_STATE.NONE:
+		Basic_Boss_State.NONE:
 			pass
 
 
@@ -142,7 +142,7 @@ func change_state(state: BASIC_BOSS_STATE):
 
 	# Enter new state
 	match state:
-		BASIC_BOSS_STATE.BASIC:
+		Basic_Boss_State.BASIC:
 			rotation = PI/2
 			change_polarity()
 			if enraged:
@@ -154,7 +154,7 @@ func change_state(state: BASIC_BOSS_STATE):
 			basic_state_timer.start()
 			velocity = Vector2(curr_speed, 0)
 
-		BASIC_BOSS_STATE.LOCK_ON:
+		Basic_Boss_State.LOCK_ON:
 			if polarity == Globals.Polarity.RED:
 				targeted_player = Globals.get_player_of_polarity(Globals.Polarity.BLUE)
 			else:
@@ -164,7 +164,7 @@ func change_state(state: BASIC_BOSS_STATE):
 			lock_on_state_timer.start()
 			lock_on_sound.play()
 
-		BASIC_BOSS_STATE.CHARGE:
+		Basic_Boss_State.CHARGE:
 			if polarity == Globals.Polarity.RED:
 				targeted_player = Globals.get_player_of_polarity(Globals.Polarity.BLUE)
 			else:
@@ -173,7 +173,7 @@ func change_state(state: BASIC_BOSS_STATE):
 			lock_on_delay_timer.start()
 			charge_prep_sound.play()
 
-		BASIC_BOSS_STATE.NONE:
+		Basic_Boss_State.NONE:
 			velocity = Vector2.ZERO
 			fire_timer.stop()
 			polarity_swap_timer.stop()
@@ -209,7 +209,7 @@ func absorb_damage_effect() -> void:
 
 func die(damage_source = null) -> void:
 	set_hurtbox_active(false)
-	change_state(BASIC_BOSS_STATE.NONE)
+	change_state(Basic_Boss_State.NONE)
 	if damage_source and "shooter_id" in damage_source:
 		award_points(damage_source.shooter_id)
 	animation_player.play("death")
@@ -231,21 +231,21 @@ func _on_polarity_swap_timer_timeout() -> void:
 
 
 func _on_intro_timer_timeout() -> void:
-	change_state(BASIC_BOSS_STATE.BASIC)
+	change_state(Basic_Boss_State.BASIC)
 
 func _on_basic_state_timer_timeout() -> void:
 	if enraged:
-		change_state(BASIC_BOSS_STATE.CHARGE)
+		change_state(Basic_Boss_State.CHARGE)
 	else:
-		change_state(BASIC_BOSS_STATE.LOCK_ON)
+		change_state(Basic_Boss_State.LOCK_ON)
 
 func _on_lock_on_state_duration_timer_timeout() -> void:
-	change_state(BASIC_BOSS_STATE.BASIC)
+	change_state(Basic_Boss_State.BASIC)
 
 func _on_lock_on_delay_timer_timeout() -> void:
-	if curr_state == BASIC_BOSS_STATE.LOCK_ON:
+	if curr_state == Basic_Boss_State.LOCK_ON:
 		fire_timer.start(fire_rate_lock_on)
-	elif curr_state == BASIC_BOSS_STATE.CHARGE:
+	elif curr_state == Basic_Boss_State.CHARGE:
 		charge_dash_sound.play()
 		velocity = Vector2.from_angle(global_rotation).normalized() * curr_speed * speed_mult_charge
 
@@ -253,9 +253,9 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	global_rotation = 90
 	position.y = -100
 	position.x = clampf(position.x, left_edge, right_edge)
-	if curr_state == BASIC_BOSS_STATE.CHARGE:
+	if curr_state == Basic_Boss_State.CHARGE:
 		velocity = Vector2.DOWN * curr_speed * 0.2
 		post_charge_daze_timer.start()
 
 func _on_post_charge_daze_timer_timeout() -> void:
-	change_state(BASIC_BOSS_STATE.BASIC)
+	change_state(Basic_Boss_State.BASIC)
