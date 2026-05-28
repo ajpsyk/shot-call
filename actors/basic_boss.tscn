@@ -2,11 +2,385 @@
 
 [ext_resource type="Script" uid="uid://hkt0qaw8h6xf" path="res://scripts/basic_boss.gd" id="1_0pmct"]
 [ext_resource type="PackedScene" uid="uid://xvhbv1jska1y" path="res://scenes/enemy_laser.tscn" id="2_d081i"]
-[ext_resource type="Texture2D" uid="uid://blas5sdm6xvpw" path="res://assets/kenney_space-shooter-remastered/PNG/Enemies/enemyBlack5.png" id="3_0pmct"]
-[ext_resource type="Texture2D" uid="uid://cvkx51cemj3y0" path="res://assets/white.bmp" id="4_d081i"]
+[ext_resource type="Texture2D" uid="uid://cvkx51cemj3y0" path="res://assets/img/white.bmp" id="4_d081i"]
+[ext_resource type="Texture2D" uid="uid://dex8yw7673owm" path="res://assets/img/stock explosion/expl01.png" id="5_4g4hb"]
+[ext_resource type="Texture2D" uid="uid://ctkwt7cn3772i" path="res://assets/img/stock explosion/expl02.png" id="6_6vafb"]
+[ext_resource type="Texture2D" uid="uid://bgeotlvoov1h4" path="res://assets/img/stock explosion/expl03.png" id="7_s552j"]
+[ext_resource type="Texture2D" uid="uid://eg84rw74chse" path="res://assets/img/stock explosion/expl04.png" id="8_b6u6y"]
+[ext_resource type="Texture2D" uid="uid://7ap0brjcp6fg" path="res://assets/img/stock explosion/expl05.png" id="9_4oqfe"]
+[ext_resource type="Texture2D" uid="uid://cj7kpy0cuqcju" path="res://assets/img/stock explosion/expl06.png" id="10_h3v3n"]
+[ext_resource type="Texture2D" uid="uid://ruevsqu4skuv" path="res://assets/img/stock explosion/expl07.png" id="11_4if5o"]
+[ext_resource type="Texture2D" uid="uid://1paq32vchtn8" path="res://assets/img/stock explosion/expl08.png" id="12_okid1"]
+[ext_resource type="Texture2D" uid="uid://cxx6w3j0dyev5" path="res://assets/img/stock explosion/expl09.png" id="13_te161"]
+[ext_resource type="Texture2D" uid="uid://cona7vcvay3ph" path="res://assets/img/stock explosion/expl10.png" id="14_vtfr5"]
+[ext_resource type="Texture2D" uid="uid://bwxkik8qruc1" path="res://assets/img/stock explosion/expl11.png" id="15_2evmk"]
+[ext_resource type="Texture2D" uid="uid://owrv0lwhxwgi" path="res://assets/img/stock explosion/expl12.png" id="16_loxcp"]
+[ext_resource type="Texture2D" uid="uid://b5njgqv4tult3" path="res://assets/img/stock explosion/expl13.png" id="17_pf1qe"]
+[ext_resource type="Texture2D" uid="uid://cohcm3qd6op5j" path="res://assets/img/stock explosion/expl14.png" id="18_88u5m"]
+[ext_resource type="Texture2D" uid="uid://rbbaexrgssxl" path="res://assets/img/stock explosion/expl15.png" id="19_2aae3"]
+[ext_resource type="Texture2D" uid="uid://d06hfj1mq6h4x" path="res://assets/img/stock explosion/expl16.png" id="20_uxdrg"]
+[ext_resource type="Texture2D" uid="uid://bjfs3lxidlc0o" path="res://assets/img/stock explosion/expl17.png" id="21_bc0q6"]
+[ext_resource type="AudioStream" uid="uid://byghc7xnekv4k" path="res://assets/sound/undertale_mus_create.wav" id="21_h3v3n"]
+[ext_resource type="AudioStream" uid="uid://dtjta7fwjxunq" path="res://assets/sound/EnemyShoot.wav" id="22_6vafb"]
+[ext_resource type="AudioStream" uid="uid://cbxnlniuo13t7" path="res://assets/sound/GameSupply NintendoSFX/1/Explosion9.wav" id="22_okid1"]
+[ext_resource type="AudioStream" uid="uid://yorb8tab7v0i" path="res://assets/sound/LockOnBlips.wav" id="23_s552j"]
+[ext_resource type="AudioStream" uid="uid://cgclajbrh5soj" path="res://assets/sound/ChargePrep.wav" id="24_4oqfe"]
+[ext_resource type="AudioStream" uid="uid://bar5puk25qawy" path="res://assets/sound/ChargeDash.wav" id="25_h3v3n"]
+[ext_resource type="Texture2D" uid="uid://s8bfa5nag7ey" path="res://assets/img/diamond sparkle.png" id="26_4if5o"]
+[ext_resource type="AudioStream" uid="uid://bjtvphfgrdqhe" path="res://assets/sound/GameSupply NintendoSFX/1/Hit_Hurt6.wav" id="26_vtfr5"]
+[ext_resource type="AudioStream" uid="uid://chmralcb3nauy" path="res://assets/sound/GameSupply NintendoSFX/2/Blip_Select.wav" id="27_2evmk"]
+[ext_resource type="AudioStream" uid="uid://mf7e1tf2ghpf" path="res://assets/sound/GameSupply NintendoSFX/2/Randomize48.wav" id="27_4if5o"]
+[ext_resource type="AudioStream" uid="uid://xuvhosxps0d4" path="res://assets/sound/EnemySwap.wav" id="31_2evmk"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b6u6y"]
+load_path = "res://.godot/imported/enemyBlack5.png-39fd3c56c78805d3addeeedfbec15937.ctex"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0pmct"]
 radius = 76.00658
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6frqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4g4hb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6vafb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_s552j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_b6u6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4oqfe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_h3v3n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4if5o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_okid1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_te161")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_vtfr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_2evmk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_loxcp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pf1qe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_88u5m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2aae3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_uxdrg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_bc0q6")
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="Animation" id="Animation_d081i"]
+resource_name = "RESET"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionAnimation:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExplosionAnimation:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ExplosionAnimation:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EnragedSparkle:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.1, 0.1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EnragedSparkle:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("EnragedSparkle:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_s552j"]
+resource_name = "death"
+length = 3.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplosionAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4875, 0.5, 0.9875, 1, 1.95),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0, 16, 0, 16, 0, 16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionAnimation:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExplosionAnimation:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(3, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayerSoundChannel")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("22_okid1")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("22_okid1")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_4if5o")
+}],
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/4/use_blend = true
+
+[sub_resource type="Animation" id="Animation_qjld2"]
+resource_name = "enraged_transition"
+length = 2.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplosionAnimation:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionAnimation:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 16]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnragedSparkle:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.8, 2.15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.1, 0.1), Vector2(0, 0)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayerSoundChannel")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("22_okid1")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("21_h3v3n")
+}],
+"times": PackedFloat32Array(0, 1.8001)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("EnragedSparkle:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.75, 1.8, 2.19),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.70980394), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EnragedSparkle:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_qhfra"]
+resource_name = "fire_recoil"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-12, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjld2"]
+_data = {
+&"RESET": SubResource("Animation_d081i"),
+&"death": SubResource("Animation_s552j"),
+&"enraged_transition": SubResource("Animation_qjld2"),
+&"fire_recoil": SubResource("Animation_qhfra")
+}
 
 [node name="EnemyBasicBoss" type="CharacterBody2D" unique_id=701006875 node_paths=PackedStringArray("sprite", "hurtbox") groups=["Enemy"]]
 collision_layer = 204
@@ -15,7 +389,7 @@ motion_mode = 1
 script = ExtResource("1_0pmct")
 laser_scene = ExtResource("2_d081i")
 dist_from_top = 220
-max_health = 50
+max_health = 60
 score_value = 2000
 sprite = NodePath("Sprite2D")
 hurtbox = NodePath("Hurtbox")
@@ -24,7 +398,7 @@ hurtbox = NodePath("Hurtbox")
 clip_children = 2
 rotation = -1.5707964
 scale = Vector2(1.75, 1.75)
-texture = ExtResource("3_0pmct")
+texture = SubResource("CompressedTexture2D_b6u6y")
 
 [node name="WhiteFlash" type="Sprite2D" parent="Sprite2D" unique_id=2132871108]
 modulate = Color(1, 1, 1, 0)
@@ -65,18 +439,59 @@ one_shot = true
 one_shot = true
 
 [node name="PostChargeDazeTimer" type="Timer" parent="." unique_id=1941364837]
-wait_time = 3.0
+wait_time = 4.0
 one_shot = true
 
 [node name="HealthLeft" type="RichTextLabel" parent="." unique_id=650324758]
-offset_left = -137.0
-offset_top = 26.0
-offset_right = -97.0
-offset_bottom = 66.0
+offset_left = -87.0
+offset_top = 18.0
+offset_right = -47.0
+offset_bottom = 58.0
 rotation = -1.5707964
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1974851322]
 rect = Rect2(-79, -89, 158, 177)
+
+[node name="ExplosionAnimation" type="AnimatedSprite2D" parent="." unique_id=1526885848]
+visible = false
+position = Vector2(-39, 0)
+rotation = -1.5707964
+sprite_frames = SubResource("SpriteFrames_6frqd")
+frame = 16
+
+[node name="EnragedSparkle" type="Sprite2D" parent="." unique_id=588312027]
+visible = false
+position = Vector2(46, 0)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("26_4if5o")
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="." unique_id=914789008]
+stream = ExtResource("22_6vafb")
+
+[node name="PolaritySwapSound" type="AudioStreamPlayer2D" parent="." unique_id=219129396]
+stream = ExtResource("31_2evmk")
+volume_db = 3.0
+
+[node name="LockOnSound" type="AudioStreamPlayer2D" parent="." unique_id=144975959]
+stream = ExtResource("23_s552j")
+
+[node name="ChargePrepSound" type="AudioStreamPlayer2D" parent="." unique_id=282825043]
+stream = ExtResource("24_4oqfe")
+
+[node name="ChargeDashSound" type="AudioStreamPlayer2D" parent="." unique_id=435750048]
+stream = ExtResource("25_h3v3n")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=1073342317]
+stream = ExtResource("26_vtfr5")
+
+[node name="AbsorbSound" type="AudioStreamPlayer2D" parent="." unique_id=869456602]
+stream = ExtResource("27_2evmk")
+volume_db = -12.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1106664439]
+libraries/ = SubResource("AnimationLibrary_qjld2")
+
+[node name="AnimationPlayerSoundChannel" type="AudioStreamPlayer2D" parent="." unique_id=1822281977]
 
 [connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]
 [connection signal="timeout" from="PolaritySwapTimer" to="." method="_on_polarity_swap_timer_timeout"]
