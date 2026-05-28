@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bnt648rt7cqxs"]
+
+[ext_resource type="Script" uid="uid://m0tc7ryrtet7" path="res://scripts/enemy_seeker.gd" id="1_733xr"]
+[ext_resource type="Texture2D" uid="uid://dkt1wueeaby3k" path="res://assets/kenney_space-shooter-remastered/PNG/Enemies/enemyBlack4.png" id="2_cgh8r"]
+[ext_resource type="PackedScene" uid="uid://cgo843eldvbjn" path="res://scenes/enemy_blast_bullet.tscn" id="2_qotyf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cgh8r"]
+radius = 35.468296
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_db63n"]
+radius = 300.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qotyf"]
+radius = 75.0
+
+[node name="EnemySeeker" type="CharacterBody2D" unique_id=1377408971 node_paths=PackedStringArray("sprite", "hurtbox") groups=["Enemy"]]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_733xr")
+projectile_scene = ExtResource("2_qotyf")
+base_speed = 120.0
+sprite = NodePath("Sprite2D")
+hurtbox = NodePath("Hurtbox")
+metadata/_custom_type_script = "uid://djt6iihvxwrut"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1038265329]
+rotation = -1.5707964
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_cgh8r")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=621957252 groups=["Enemy"]]
+position = Vector2(-2, 0)
+collision_layer = 68
+collision_mask = 35
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1310818143]
+shape = SubResource("CircleShape2D_cgh8r")
+
+[node name="TargetingArea" type="Area2D" parent="." unique_id=1573531425]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TargetingArea" unique_id=1711392806]
+shape = SubResource("CircleShape2D_db63n")
+
+[node name="TriggerArea" type="Area2D" parent="." unique_id=665067671]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea" unique_id=2109271909]
+shape = SubResource("CircleShape2D_qotyf")
+
+[node name="OnTargetWait" type="Timer" parent="." unique_id=932570669]
+wait_time = 0.75
+one_shot = true
+
+[node name="TriggerTimer" type="Timer" parent="." unique_id=1735370976]
+wait_time = 0.4
+one_shot = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2077901119]
+position = Vector2(-1, 1)
+rect = Rect2(-45, -47, 92, 92)
+
+[connection signal="body_entered" from="TargetingArea" to="." method="_on_targeting_area_body_entered"]
+[connection signal="body_entered" from="TriggerArea" to="." method="_on_trigger_area_body_entered"]
+[connection signal="timeout" from="OnTargetWait" to="." method="_on_on_target_wait_timeout"]
+[connection signal="timeout" from="TriggerTimer" to="." method="_on_trigger_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

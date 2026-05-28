@@ -1,7 +1,11 @@
 extends CharacterBody2D
 class_name Enemy
-# A basic enemy which moves side to side near the top of the screen
-# and shoots lasers at the player.
+## An adversary to the player.
+##
+## This class is an extension of CharacterBody2D with custom functionality for basic enemy behavior:
+## responding to incoming player attacks, taking damage, dying, and awarding points.
+## [br][br]
+## Many of these behaviors are meant to be overridden, allowing for custom behaviors and animations.
 
 
 # ~~~~~ VARIABLES ~~~~~

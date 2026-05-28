@@ -1,5 +1,5 @@
-# A basic enemy which moves side to side near the top of the screen
-# and shoots lasers at the player.
+## A basic enemy which moves side to side near the top of the screen
+## and shoots lasers at the player.
 extends Enemy
 
 
