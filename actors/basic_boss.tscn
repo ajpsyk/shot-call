@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://hkt0qaw8h6xf" path="res://scripts/basic_boss.gd" id="1_0pmct"]
 [ext_resource type="PackedScene" uid="uid://xvhbv1jska1y" path="res://scenes/enemy_laser.tscn" id="2_d081i"]
 [ext_resource type="Texture2D" uid="uid://blas5sdm6xvpw" path="res://assets/kenney_space-shooter-remastered/PNG/Enemies/enemyBlack5.png" id="3_0pmct"]
+[ext_resource type="Texture2D" uid="uid://cvkx51cemj3y0" path="res://assets/white.bmp" id="4_d081i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0pmct"]
 radius = 76.00658
@@ -12,18 +13,24 @@ collision_layer = 204
 collision_mask = 34
 motion_mode = 1
 script = ExtResource("1_0pmct")
-dist_from_top = 220
 laser_scene = ExtResource("2_d081i")
-move_speed = 250.0
+dist_from_top = 220
 max_health = 50
 score_value = 2000
 sprite = NodePath("Sprite2D")
 hurtbox = NodePath("Hurtbox")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=184503154]
+clip_children = 2
 rotation = -1.5707964
 scale = Vector2(1.75, 1.75)
 texture = ExtResource("3_0pmct")
+
+[node name="WhiteFlash" type="Sprite2D" parent="Sprite2D" unique_id=2132871108]
+modulate = Color(1, 1, 1, 0)
+rotation = 1.5707964
+scale = Vector2(84.411, 97)
+texture = ExtResource("4_d081i")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1197921587 groups=["Enemy"]]
 collision_layer = 68
@@ -51,11 +58,10 @@ wait_time = 8.0
 one_shot = true
 
 [node name="LockOnStateDurationTimer" type="Timer" parent="." unique_id=646854385]
-wait_time = 7.0
+wait_time = 5.0
 one_shot = true
 
 [node name="LockOnDelayTimer" type="Timer" parent="." unique_id=1671051949]
-wait_time = 2.0
 one_shot = true
 
 [node name="PostChargeDazeTimer" type="Timer" parent="." unique_id=1941364837]
@@ -63,10 +69,11 @@ wait_time = 3.0
 one_shot = true
 
 [node name="HealthLeft" type="RichTextLabel" parent="." unique_id=650324758]
-offset_left = -24.0
-offset_top = -130.0
-offset_right = 16.0
-offset_bottom = -90.0
+offset_left = -137.0
+offset_top = 26.0
+offset_right = -97.0
+offset_bottom = 66.0
+rotation = -1.5707964
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1974851322]
 rect = Rect2(-79, -89, 158, 177)

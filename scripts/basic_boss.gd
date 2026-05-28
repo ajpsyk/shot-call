@@ -7,26 +7,30 @@ extends Enemy
 
 # ~~~~~ VARIABLES ~~~~~
 
-## Enemy lingers this many pixels from the screen's top edge.
-@export var dist_from_top: int = 200
-## Enemy will not get this many pixels close to the screen's left/right edges. Should never be greater than 1/2 of the viewport's width.
-@export var dist_from_sides: int = 100
 ## Enemy will spawn this scene when firing a laser.
 @export var laser_scene: PackedScene
 
+@export_group("Movement")
+## Enemy lingers this many pixels from the screen's top edge.
+@export var dist_from_top: int = 200
+## Enemy will not get this many pixels close to the screen's left/right edges. Should never be greater than 1/2 of the viewport's width.
+@export var dist_from_sides: int = 10
+
+@export_group("Fire Rate")
 @export var fire_rate_basic: float = 0.8
 @export var fire_rate_enraged: float = 0.6
 @export var fire_rate_lock_on: float = 0.3
 
-const SPEED_MULT_ENRAGED: float = 1.5
-const SPEED_MULT_CHARGE: float = 4.0
+@export_group("Enraged Mode")
+@export var enraged_health_percent: float = 0.6
+@export var speed_mult_enraged: float = 1.5
+@export var speed_mult_charge: float = 2.0
 
 var left_edge: int
 var right_edge: int
 
 var targeted_player: CharacterBody2D
 
-var enraged_health_percent: float = 0.6
 var enraged: bool = false
 
 enum BASIC_BOSS_STATE { INTRO, BASIC, LOCK_ON, CHARGE, NONE }
@@ -42,7 +46,10 @@ var curr_state: BASIC_BOSS_STATE = BASIC_BOSS_STATE.INTRO
 @onready var lock_on_delay_timer: Timer = $LockOnDelayTimer
 @onready var post_charge_daze_timer: Timer = $PostChargeDazeTimer
 
-@onready var health_rich_text_label: RichTextLabel = $HealthLeft
+@onready var white_flash: Sprite2D = $Sprite2D/WhiteFlash
+
+@onready var health_rich_text_label: RichTextLabel = $HealthLeft #DEBUG
+
 
 # ~~~~~ FUNCTIONALITY ~~~~~
 
@@ -92,6 +99,7 @@ func _physics_process(delta: float) -> void:
 
 	if not enraged and health <= max_health * enraged_health_percent:
 		enraged = true
+		curr_speed = base_speed * speed_mult_enraged
 		basic_state_timer.stop()
 		lock_on_delay_timer.stop()
 		lock_on_state_timer.stop()
@@ -152,14 +160,14 @@ func change_polarity() -> void:
 	
 	if polarity == Globals.Polarity.BLUE:
 		polarity = Globals.Polarity.RED
-		sprite.modulate = COLOR_RED
 	else:
 		polarity = Globals.Polarity.BLUE
-		sprite.modulate = COLOR_BLUE
+	update_polarity_color()
 
-
-func _on_intro_timer_timeout() -> void:
-	change_state(BASIC_BOSS_STATE.BASIC)
+func take_damage_effect() -> void:
+	var tween = create_tween()
+	tween.tween_property(white_flash, "modulate", Color(1,1,1,0.5), 0.05)
+	tween.tween_property(white_flash, "modulate", Color(1,1,1,0), 0.05)
 
 func _on_laser_fire_timer_timeout() -> void:
 	var new_laser: Area2D = laser_scene.instantiate()
@@ -171,6 +179,9 @@ func _on_laser_fire_timer_timeout() -> void:
 func _on_polarity_swap_timer_timeout() -> void:
 	change_polarity()
 
+
+func _on_intro_timer_timeout() -> void:
+	change_state(BASIC_BOSS_STATE.BASIC)
 
 func _on_basic_state_timer_timeout() -> void:
 	if enraged:
@@ -185,13 +196,13 @@ func _on_lock_on_delay_timer_timeout() -> void:
 	if curr_state == BASIC_BOSS_STATE.LOCK_ON:
 		fire_timer.start(fire_rate_lock_on)
 	elif curr_state == BASIC_BOSS_STATE.CHARGE:
-		velocity = Vector2.from_angle(global_rotation).normalized() * move_speed * SPEED_MULT_CHARGE
+		velocity = Vector2.from_angle(global_rotation).normalized() * curr_speed * speed_mult_charge
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	global_rotation = 90
 	position.y = -50
 	position.x = clampf(position.x, left_edge, right_edge)
-	velocity = Vector2.DOWN * move_speed * 0.3
+	velocity = Vector2.DOWN * curr_speed * 0.2
 	post_charge_daze_timer.start()
 
 func _on_post_charge_daze_timer_timeout() -> void:

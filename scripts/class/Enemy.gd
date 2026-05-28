@@ -6,13 +6,13 @@ class_name Enemy
 
 # ~~~~~ VARIABLES ~~~~~
 
-## Speed of movement in pixels/second.
-@export var move_speed: float = 300
-var curr_speed: float = move_speed
-
+## Base movement speed in pixels/second.
+@export var base_speed: float = 300
+var curr_speed: float
+## Hits taken before this enemy is defeated.
 @export var max_health: int = 5
 var health: int
-
+## How many points the player is awarded for defeating this enemy.
 @export var score_value: int = 100
 
 var polarity: Globals.Polarity = Globals.Polarity.NONE
@@ -34,10 +34,13 @@ const COLOR_RED = Color(1.0, 0.2, 0.2)
 
 func _ready() -> void:
 	health = max_health
+	curr_speed = base_speed
 
 	# If Hurtbox.area_entered isn't already connected to a custom function, connect it to the default function
 	if !hurtbox.area_entered.has_connections():
 		hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	
+	update_polarity_color()
 
 func _physics_process(_delta: float) -> void:
 	pass
@@ -56,9 +59,9 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 
 func take_damage_effect() -> void:
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color.WHITE, 0.05)
+	tween.tween_property(sprite, "self_modulate", Color.WHITE, 0.05)
 	var original_color = COLOR_RED if polarity == Globals.Polarity.RED else COLOR_BLUE
-	tween.tween_property(self, "modulate", original_color, 0.05)
+	tween.tween_property(sprite, "self_modulate", original_color, 0.05)
 
 func absorb_damage_effect() -> void:
 	var tween = create_tween()
@@ -70,6 +73,12 @@ func die(damage_source = null) -> void:
 	if damage_source and "shooter_id" in damage_source:
 		award_points(damage_source.shooter_id)
 	queue_free()
+
+func update_polarity_color() -> void:
+	if polarity == Globals.Polarity.RED:
+		sprite.self_modulate = COLOR_RED
+	elif polarity == Globals.Polarity.BLUE:
+		sprite.self_modulate = COLOR_BLUE
 
 
 # Helper functions - only override if you know what you're doing!
@@ -94,3 +103,4 @@ func set_hurtbox_active(active: bool) -> void:
 
 func set_random_polarity() -> void:
 	polarity = [Globals.Polarity.RED, Globals.Polarity.BLUE].pick_random()
+	update_polarity_color()

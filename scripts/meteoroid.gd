@@ -32,7 +32,6 @@ func set_polarity(incoming_polarity: String) -> void:
 			polarity_is_preset = false
 	
 func _ready() -> void:
-	super()
 	
 	sprite.texture = texture_to_use
 	$Hurtbox/CollisionShape2D.shape.radius = hitbox
@@ -42,11 +41,11 @@ func _ready() -> void:
 		set_random_polarity()
 		
 	if polarity == Globals.Polarity.RED:
-		sprite.modulate = COLOR_RED
 		set_collision_layer_value(3, true)
 	else:
-		sprite.modulate = COLOR_BLUE
 		set_collision_layer_value(7, true)
+		
+	super()
 	
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
