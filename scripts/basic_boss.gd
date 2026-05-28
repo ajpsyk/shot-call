@@ -155,15 +155,20 @@ func change_state(state: BASIC_BOSS_STATE):
 			velocity = Vector2(curr_speed, 0)
 
 		BASIC_BOSS_STATE.LOCK_ON:
-			print("[Basic Boss] Players: ", Globals.players)
-			targeted_player = Globals.players.pick_random()
+			if polarity == Globals.Polarity.RED:
+				targeted_player = Globals.get_player_of_polarity(Globals.Polarity.BLUE)
+			else:
+				targeted_player = Globals.get_player_of_polarity(Globals.Polarity.RED)
 			velocity = Vector2.ZERO
 			lock_on_delay_timer.start()
 			lock_on_state_timer.start()
 			lock_on_sound.play()
 
 		BASIC_BOSS_STATE.CHARGE:
-			targeted_player = Globals.players.pick_random()
+			if polarity == Globals.Polarity.RED:
+				targeted_player = Globals.get_player_of_polarity(Globals.Polarity.BLUE)
+			else:
+				targeted_player = Globals.get_player_of_polarity(Globals.Polarity.RED)
 			velocity = Vector2(0,-20)
 			lock_on_delay_timer.start()
 			charge_prep_sound.play()
