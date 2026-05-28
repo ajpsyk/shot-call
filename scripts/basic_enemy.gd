@@ -52,4 +52,5 @@ func _on_laser_fire_timer_timeout() -> void:
 	var new_laser: Area2D = laser_scene.instantiate()
 	new_laser.polarity = polarity
 	new_laser.global_position = position
+	new_laser.rotation = PI/2
 	get_tree().root.add_child(new_laser)
