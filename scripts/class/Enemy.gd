@@ -56,9 +56,9 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 
 func take_damage_effect() -> void:
 	var tween = create_tween()
-	tween.tween_property(sprite, "modulate", Color.WHITE, 0.05)
+	tween.tween_property(self, "modulate", Color.WHITE, 0.05)
 	var original_color = COLOR_RED if polarity == Globals.Polarity.RED else COLOR_BLUE
-	tween.tween_property(sprite, "modulate", original_color, 0.05)
+	tween.tween_property(self, "modulate", original_color, 0.05)
 
 func absorb_damage_effect() -> void:
 	var tween = create_tween()
@@ -87,6 +87,10 @@ func award_points(player_num: int) -> void:
 		Globals.player_1_score += score_value
 	elif player_num == 2:
 		Globals.player_1_score += score_value
+
+func set_hurtbox_active(active: bool) -> void:
+	hurtbox.set_deferred("monitoring", active)
+	hurtbox.set_deferred("monitorable", active)
 
 func set_random_polarity() -> void:
 	polarity = [Globals.Polarity.RED, Globals.Polarity.BLUE].pick_random()

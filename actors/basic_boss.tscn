@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bd52swx5rkn6u"]
+[gd_scene format=3 uid="uid://b24hkm4hw7wiy"]
 
 [ext_resource type="Script" uid="uid://hkt0qaw8h6xf" path="res://scripts/basic_boss.gd" id="1_0pmct"]
 [ext_resource type="PackedScene" uid="uid://xvhbv1jska1y" path="res://scenes/enemy_laser.tscn" id="2_d081i"]
@@ -15,7 +15,7 @@ script = ExtResource("1_0pmct")
 dist_from_top = 220
 laser_scene = ExtResource("2_d081i")
 move_speed = 250.0
-max_health = 100
+max_health = 50
 score_value = 2000
 sprite = NodePath("Sprite2D")
 hurtbox = NodePath("Hurtbox")
@@ -29,6 +29,7 @@ texture = ExtResource("3_0pmct")
 collision_layer = 68
 collision_mask = 34
 monitoring = false
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=815100118]
 rotation = 1.5707964
@@ -46,15 +47,19 @@ wait_time = 3.0
 wait_time = 0.8
 
 [node name="BasicStateDurationTimer" type="Timer" parent="." unique_id=1007576414]
-wait_time = 10.0
+wait_time = 8.0
 one_shot = true
 
 [node name="LockOnStateDurationTimer" type="Timer" parent="." unique_id=646854385]
-wait_time = 10.0
+wait_time = 7.0
 one_shot = true
 
 [node name="LockOnDelayTimer" type="Timer" parent="." unique_id=1671051949]
 wait_time = 2.0
+one_shot = true
+
+[node name="PostChargeDazeTimer" type="Timer" parent="." unique_id=1941364837]
+wait_time = 3.0
 one_shot = true
 
 [node name="HealthLeft" type="RichTextLabel" parent="." unique_id=650324758]
@@ -63,9 +68,14 @@ offset_top = -130.0
 offset_right = 16.0
 offset_bottom = -90.0
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1974851322]
+rect = Rect2(-79, -89, 158, 177)
+
 [connection signal="timeout" from="IntroTimer" to="." method="_on_intro_timer_timeout"]
 [connection signal="timeout" from="PolaritySwapTimer" to="." method="_on_polarity_swap_timer_timeout"]
 [connection signal="timeout" from="FireTimer" to="." method="_on_laser_fire_timer_timeout"]
 [connection signal="timeout" from="BasicStateDurationTimer" to="." method="_on_basic_state_timer_timeout"]
 [connection signal="timeout" from="LockOnStateDurationTimer" to="." method="_on_lock_on_state_duration_timer_timeout"]
 [connection signal="timeout" from="LockOnDelayTimer" to="." method="_on_lock_on_delay_timer_timeout"]
+[connection signal="timeout" from="PostChargeDazeTimer" to="." method="_on_post_charge_daze_timer_timeout"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

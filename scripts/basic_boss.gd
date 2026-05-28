@@ -15,16 +15,19 @@ extends Enemy
 @export var laser_scene: PackedScene
 
 @export var fire_rate_basic: float = 0.8
+@export var fire_rate_enraged: float = 0.6
 @export var fire_rate_lock_on: float = 0.3
 
 const SPEED_MULT_ENRAGED: float = 1.5
 const SPEED_MULT_CHARGE: float = 4.0
 
-
 var left_edge: int
 var right_edge: int
 
 var targeted_player: CharacterBody2D
+
+var enraged_health_percent: float = 0.6
+var enraged: bool = false
 
 enum BASIC_BOSS_STATE { INTRO, BASIC, LOCK_ON, CHARGE, NONE }
 var curr_state: BASIC_BOSS_STATE = BASIC_BOSS_STATE.INTRO
@@ -37,6 +40,7 @@ var curr_state: BASIC_BOSS_STATE = BASIC_BOSS_STATE.INTRO
 @onready var basic_state_timer: Timer = $BasicStateDurationTimer
 @onready var lock_on_state_timer: Timer = $LockOnStateDurationTimer
 @onready var lock_on_delay_timer: Timer = $LockOnDelayTimer
+@onready var post_charge_daze_timer: Timer = $PostChargeDazeTimer
 
 @onready var health_rich_text_label: RichTextLabel = $HealthLeft
 
@@ -45,6 +49,11 @@ var curr_state: BASIC_BOSS_STATE = BASIC_BOSS_STATE.INTRO
 func _ready():
 	super()
 
+	# Bosses should have increased health if in multiplayer
+	if Globals.multiplayer_mode:
+		max_health *= 1.5
+		health = max_health
+	
 	rotation = PI/2
 	var screen_width: int = ProjectSettings.get_setting("display/window/size/viewport_width")
 	left_edge = dist_from_sides
@@ -61,6 +70,9 @@ func _physics_process(delta: float) -> void:
 
 		# Move back and forth, firing at the player
 		BASIC_BOSS_STATE.BASIC:
+			if !is_equal_approx(position.y, dist_from_top):
+				position.y = move_toward(position.y, dist_from_top, curr_speed*delta/2)
+			
 			if global_position.x < left_edge:
 				velocity.x = curr_speed
 			elif global_position.x > right_edge:
@@ -73,17 +85,26 @@ func _physics_process(delta: float) -> void:
 
 		# Lock onto a player and charge at them, then reappear at the top of the screen
 		BASIC_BOSS_STATE.CHARGE:
-			pass
+			if velocity.is_zero_approx() and targeted_player:
+				look_at(targeted_player.global_position)
 		
 	move_and_slide()
+
+	if not enraged and health <= max_health * enraged_health_percent:
+		enraged = true
+		basic_state_timer.stop()
+		lock_on_delay_timer.stop()
+		lock_on_state_timer.stop()
+		change_state(BASIC_BOSS_STATE.CHARGE)
 
 
 # Leaving and entering states
 func change_state(state: BASIC_BOSS_STATE):
+	print("[Basic Boss] Transition from ", BASIC_BOSS_STATE.keys()[curr_state], " to ", BASIC_BOSS_STATE.keys()[state]) #DEBUG
 	# Exit previous state
 	match curr_state:
 		BASIC_BOSS_STATE.INTRO:
-			hurtbox.set("monitoring", true)
+			set_hurtbox_active(true)
 
 		BASIC_BOSS_STATE.BASIC:
 			fire_timer.stop()
@@ -91,20 +112,23 @@ func change_state(state: BASIC_BOSS_STATE):
 
 		BASIC_BOSS_STATE.LOCK_ON:
 			global_rotation = 0
+			fire_timer.stop()
 
 		BASIC_BOSS_STATE.CHARGE:
-			pass
+			velocity = Vector2(0,0)
 
-	print("[Basic Boss] Exiting", curr_state)
 	curr_state = state
-	print("[Basic Boss] Entering", curr_state)
 
 	# Enter new state
 	match state:
 		BASIC_BOSS_STATE.BASIC:
 			rotation = PI/2
 			change_polarity()
-			fire_timer.start(fire_rate_basic)
+			if enraged:
+				fire_timer.start(fire_rate_enraged)
+			else:
+				fire_timer.start(fire_rate_basic)
+
 			polarity_swap_timer.start()
 			basic_state_timer.start()
 			velocity.x = curr_speed
@@ -114,10 +138,12 @@ func change_state(state: BASIC_BOSS_STATE):
 			targeted_player = Globals.players.pick_random()
 			velocity = Vector2(0,0)
 			lock_on_delay_timer.start()
+			lock_on_state_timer.start()
 
 		BASIC_BOSS_STATE.CHARGE:
 			targeted_player = Globals.players.pick_random()
 			velocity = Vector2(0,0)
+			lock_on_delay_timer.start()
 		
 
 func change_polarity() -> void:
@@ -125,11 +151,9 @@ func change_polarity() -> void:
 		set_random_polarity()
 	
 	if polarity == Globals.Polarity.BLUE:
-		print("Setting polarity to red")
 		polarity = Globals.Polarity.RED
 		sprite.modulate = COLOR_RED
 	else:
-		print("Setting polarity to blue")
 		polarity = Globals.Polarity.BLUE
 		sprite.modulate = COLOR_BLUE
 
@@ -149,13 +173,26 @@ func _on_polarity_swap_timer_timeout() -> void:
 
 
 func _on_basic_state_timer_timeout() -> void:
-	# if health > max_health / 2:
+	if enraged:
+		change_state(BASIC_BOSS_STATE.CHARGE)
+	else:
 		change_state(BASIC_BOSS_STATE.LOCK_ON)
-	# else:
-	# 	change_state(BASIC_BOSS_STATE.CHARGE)
 
 func _on_lock_on_state_duration_timer_timeout() -> void:
 	change_state(BASIC_BOSS_STATE.BASIC)
 
 func _on_lock_on_delay_timer_timeout() -> void:
-	fire_timer.start(fire_rate_lock_on)
+	if curr_state == BASIC_BOSS_STATE.LOCK_ON:
+		fire_timer.start(fire_rate_lock_on)
+	elif curr_state == BASIC_BOSS_STATE.CHARGE:
+		velocity = Vector2.from_angle(global_rotation).normalized() * move_speed * SPEED_MULT_CHARGE
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	global_rotation = 90
+	position.y = -50
+	position.x = clampf(position.x, left_edge, right_edge)
+	velocity = Vector2.DOWN * move_speed * 0.3
+	post_charge_daze_timer.start()
+
+func _on_post_charge_daze_timer_timeout() -> void:
+	change_state(BASIC_BOSS_STATE.BASIC)
