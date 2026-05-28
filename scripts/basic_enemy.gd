@@ -21,7 +21,6 @@ var right_edge: int
 # ~~~~~ FUNCTIONALITY ~~~~~
 
 func _ready():
-	super()
 	
 	var screen_width: int = ProjectSettings.get_setting("display/window/size/viewport_width")
 	left_edge = dist_from_sides
@@ -29,21 +28,19 @@ func _ready():
 	
 	if polarity == Globals.Polarity.NONE:
 		set_random_polarity()
+		
+	super()
 	
-	if polarity == Globals.Polarity.RED:
-		sprite.modulate = COLOR_RED
-	else:
-		sprite.modulate = COLOR_BLUE
 
 func _physics_process(delta: float) -> void:
 	if !is_equal_approx(position.y, dist_from_top):
-		position.y = move_toward(position.y, dist_from_top, move_speed*delta)
+		position.y = move_toward(position.y, dist_from_top, curr_speed*delta)
 	elif position.x < left_edge:
-		velocity.x = move_speed
+		velocity.x = curr_speed
 	elif position.x > right_edge:
-		velocity.x = -move_speed
-	elif abs(velocity.x) != move_speed:
-		velocity.x = move_speed
+		velocity.x = -curr_speed
+	elif abs(velocity.x) != curr_speed:
+		velocity.x = curr_speed
 
 	move_and_slide()
 
@@ -52,4 +49,5 @@ func _on_laser_fire_timer_timeout() -> void:
 	var new_laser: Area2D = laser_scene.instantiate()
 	new_laser.polarity = polarity
 	new_laser.global_position = position
+	new_laser.rotation = PI/2
 	get_tree().root.add_child(new_laser)

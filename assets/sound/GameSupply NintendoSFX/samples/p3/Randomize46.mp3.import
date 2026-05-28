@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b3ugplnasr2fu"
+path="res://.godot/imported/Randomize46.mp3-fb1d0f0eb285b2b9b1c9b3ef6a3cbe6b.mp3str"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/samples/p3/Randomize46.mp3"
+dest_files=["res://.godot/imported/Randomize46.mp3-fb1d0f0eb285b2b9b1c9b3ef6a3cbe6b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

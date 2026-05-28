@@ -14,7 +14,7 @@ func _ready() -> void:
 	else:
 		redLaser.visible = false
 		blueLaser.visible = true
-	velocity = Vector2.DOWN * move_speed
+	velocity = Vector2.from_angle(rotation).normalized() * move_speed
 
 
 func _physics_process(delta: float) -> void:

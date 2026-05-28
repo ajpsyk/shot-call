@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dx14mcbf4gw8a"
+path="res://.godot/imported/Pickup_Coin10.wav-3f549da6d1a8dfa9e81962f8d4e0283d.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/1/Pickup_Coin10.wav"
+dest_files=["res://.godot/imported/Pickup_Coin10.wav-3f549da6d1a8dfa9e81962f8d4e0283d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

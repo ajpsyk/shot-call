@@ -36,9 +36,11 @@ var dead: bool = false
 # ~ Godot Overrides ~
 
 func _ready() -> void:
+	Globals.players.append(self)
 	health = max_health
 	update_ship_sprite()
 	update_hurtbox_polarity()
+	set_hurtbox_active(true)
 	update_health_ui()
 	set_global_position(Globals.get_spawn_point(player_number))
 	dead = false
@@ -144,11 +146,18 @@ func change_health(amount: int):
 		die()
 
 func die():
+	Globals.players.erase(self)
 	dead = true
 	blue_ship_sprite.set_visible(false)
 	red_ship_sprite.set_visible(false)
+	set_hurtbox_active(false)
 	health_rich_text_label.set_text("Died! Press Action to respawn")
 	# Call _ready() to respawn the player
+
+func set_hurtbox_active(active: bool) -> void:
+	hurtbox.set_deferred("monitoring", active)
+	hurtbox.set_deferred("monitorable", active)
+
 
 func update_health_ui():
 	# We can change this function to call something on a UI element later.

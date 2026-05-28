@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://hot45d37ihk2"
+path="res://.godot/imported/Explosion5.wav-7dff94bc328242b48a307056d59d298d.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/1/Explosion5.wav"
+dest_files=["res://.godot/imported/Explosion5.wav-7dff94bc328242b48a307056d59d298d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

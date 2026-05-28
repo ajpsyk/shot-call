@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b1lkxi0bedn8"
+path="res://.godot/imported/Explosion8.wav-c4f2b2a35c9a9c77d3708df4ce36a236.sample"
+
+[deps]
+
+source_file="res://assets/sound/GameSupply NintendoSFX/1/Explosion8.wav"
+dest_files=["res://.godot/imported/Explosion8.wav-c4f2b2a35c9a9c77d3708df4ce36a236.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -2,6 +2,8 @@ extends Node
 
 enum Polarity { NONE, RED, BLUE }
 
+var players: Array[CharacterBody2D]
+
 var spawn_points: Array[Marker2D] = [null, null, null]
 
 var multiplayer_mode: bool = false
@@ -24,4 +26,18 @@ func get_spawn_point(player_number: int) -> Vector2:
 			return spawn_point.get_global_position()
 	
 	push_warning("Failed to find spawn point Player%dSpawn" % player_number)
-	return Vector2(0,1920)
+	return Vector2(270,900)
+
+# Returns the first Player in players list with the desired polarity.
+# If not found (singleplayer, a player is down), defaults to the first Player in the list.
+# If list is empty (all players are down), returns null.
+# If you want to get a random player, you can use Globals.players.pick_random().
+func get_player_of_polarity(pol: Polarity) -> CharacterBody2D:
+	for player in players:
+		if "polarity" in player and player.polarity == pol:
+			return player
+	
+	if players.is_empty():
+		return null
+	else:
+		return players[0]
