@@ -6,7 +6,7 @@ var players: Array[CharacterBody2D]
 
 var spawn_points: Array[Marker2D] = [null, null, null]
 
-var multiplayer_mode: bool = true
+var multiplayer_mode: bool = false
 
 var player_1_score: int = 0
 var player_2_score: int = 0
