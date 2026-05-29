@@ -52,3 +52,12 @@ func update_health_bar(player: int, health: int):
 		health_overlay.update_health_bar(player, health)
 	else:
 		push_warning("[Globals] Health overlay object not found")
+
+func update_singleplayer_health_bar_color(polarity: Polarity):
+	if health_overlay == null:
+		health_overlay = get_tree().root.find_child("HealthOverlay", true, false)
+
+	if health_overlay:
+		health_overlay.update_singleplayer_health_bar_color(polarity)
+	else:
+		push_warning("[Globals] Health overlay object not found")

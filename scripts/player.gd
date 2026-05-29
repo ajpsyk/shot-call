@@ -123,6 +123,8 @@ func update_ship_sprite():
 	elif polarity == Globals.Polarity.BLUE:
 		red_ship_sprite.set_visible(false)
 		blue_ship_sprite.set_visible(true)
+	if not Globals.multiplayer_mode:
+		Globals.update_singleplayer_health_bar_color(polarity)
 
 func update_hurtbox_polarity():
 	if polarity == Globals.Polarity.RED:
