@@ -148,6 +148,13 @@ func die():
 	blue_ship_sprite.set_visible(false)
 	red_ship_sprite.set_visible(false)
 	set_hurtbox_active(false)
+	
+	if player_number == 1:
+		Globals.player_1_score = max(0, Globals.player_1_score - 300)
+	elif player_number == 2:
+		Globals.player_2_score = max(0, Globals.player_2_score - 300)
+	
+	
 	# Call _ready() to respawn the player
 
 func set_hurtbox_active(active: bool) -> void:

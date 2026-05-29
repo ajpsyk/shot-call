@@ -71,7 +71,6 @@ laser_scene = ExtResource("6_tr1x6")
 script = ExtResource("7_15mv3")
 BIG_METEOROIDS = Array[ExtResource("8_wbtxt")]([ExtResource("9_x2fux"), ExtResource("10_s7g0b"), ExtResource("11_mmfjm"), ExtResource("12_k8ld0")])
 meteor_scene = ExtResource("8_2aecg")
-test_section = "Minute 1-2"
 
 [node name="Score Overlay" parent="." unique_id=1629194483 instance=ExtResource("17_hjqri")]
 offset = Vector2(50, 0)

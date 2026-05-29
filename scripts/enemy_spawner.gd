@@ -145,6 +145,8 @@ func build_minute_4_to_5() -> void:
 	
 	# Final threshold gate converted to a shootable red wall
 	add_wall(295.0, "big", "red", 400.0)
+	add_wall(295.2, "big", "blue", 400.0)
+	
 
 func add_single(time: float, x_pct: float, tier: String, polarity: String, speed: float) -> void:
 	spawn_timeline.append({"time": time, "x_pct": x_pct, "tier": tier, "polarity": polarity, "speed": speed})
