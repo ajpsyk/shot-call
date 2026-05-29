@@ -62,7 +62,7 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_uwrxv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder/StaticBody2D" unique_id=635149500]
-polygon = PackedVector2Array(-20, 0, 540, 0, 540, 960, 0, 960, 0, 0, -20, 0, -20, 980, 560, 980, 560, -20, -20, -20)
+polygon = PackedVector2Array(-20, 0, 540, 0, 540, 930, 0, 930, 0, 0, -20, 0, -20, 950, 560, 950, 560, -20, -20, -20)
 
 [node name="LaserManager" parent="." unique_id=1663080434 instance=ExtResource("5_so66j")]
 laser_scene = ExtResource("6_tr1x6")
