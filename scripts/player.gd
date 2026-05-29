@@ -153,4 +153,3 @@ func die():
 func set_hurtbox_active(active: bool) -> void:
 	hurtbox.set_deferred("monitoring", active)
 	hurtbox.set_deferred("monitorable", active)
-

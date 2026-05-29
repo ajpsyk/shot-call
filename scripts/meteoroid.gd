@@ -28,6 +28,8 @@ func set_polarity(incoming_polarity: String) -> void:
 			polarity = Globals.Polarity.RED
 		"blue":
 			polarity = Globals.Polarity.BLUE
+		"none":
+			polarity = Globals.Polarity.NONE
 		_:
 			polarity_is_preset = false
 	
@@ -42,10 +44,20 @@ func _ready() -> void:
 		
 	if polarity == Globals.Polarity.RED:
 		set_collision_layer_value(3, true)
-	else:
+	elif polarity == Globals.Polarity.BLUE:
 		set_collision_layer_value(7, true)
+	else:
+		set_collision_layer_value(3, false)
+		set_collision_layer_value(7, false)
 		
 	super()
+	
+
+	if polarity == Globals.Polarity.NONE:
+		sprite.self_modulate = Color(0.25, 0.25, 0.25)
+		max_health = 999999
+		health = max_health
+		
 	
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
@@ -57,3 +69,8 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.get_parent().is_in_group("Player"):
 		queue_free()
 	super(area)
+	
+func take_damage_effect() -> void:
+	if polarity == Globals.Polarity.NONE:
+		return
+	super()
