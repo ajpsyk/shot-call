@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://155i6meqb7g1" path="res://scripts/parallax_background.gd" id="2_rysoc"]
 [ext_resource type="PackedScene" uid="uid://b6mm1l2f6ynx3" path="res://scenes/laser_manager.tscn" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://8u04i3lelg5f" path="res://scenes/meteoroid_manager.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://muf2yguqca7" path="res://scenes/health_overlay.tscn" id="5_ssvqc"]
 [ext_resource type="Script" uid="uid://8bufnbxor5d4" path="res://resources/meteroid_data.gd" id="6_trtic"]
 [ext_resource type="Resource" uid="uid://dlgkjlrabmsps" path="res://resources/big_meteoroid_1.tres" id="7_ir15t"]
 [ext_resource type="Resource" uid="uid://vi0im8i8xpl0" path="res://resources/big_meteoroid_2.tres" id="8_ca42v"]
@@ -35,18 +36,24 @@ scale = Vector2(0.6450777, 0.49566084)
 texture = ExtResource("2_ca42v")
 centered = false
 
+[node name="Score Overlay" parent="." unique_id=1629194483 instance=ExtResource("14_trtic")]
+offset = Vector2(50, 0)
+scale = Vector2(0.8, 0.8)
+transform = Transform2D(0.8, 0, 0, 0.8, 50, 0)
+
+[node name="HealthOverlay" parent="." unique_id=370172771 instance=ExtResource("5_ssvqc")]
+
 [node name="Player1Spawn" type="Marker2D" parent="." unique_id=1692881551]
-position = Vector2(100, 860)
+position = Vector2(130, 800)
 gizmo_extents = 100.0
 
 [node name="Player2Spawn" type="Marker2D" parent="." unique_id=463786856]
-position = Vector2(440, 860)
+position = Vector2(410, 800)
 gizmo_extents = 100.0
 
 [node name="Player1" parent="." unique_id=2145724321 node_paths=PackedStringArray("laser_manager") instance=ExtResource("1_uwrxv")]
 position = Vector2(133, 1833)
 collision_mask = 24
-player_number = 1
 laser_manager = NodePath("../LaserManager")
 
 [node name="Player2" parent="." unique_id=969589887 node_paths=PackedStringArray("laser_manager") instance=ExtResource("1_uwrxv")]
@@ -72,8 +79,3 @@ laser_scene = ExtResource("1_lnu2h")
 BIG_METEOROIDS = Array[ExtResource("6_trtic")]([ExtResource("7_ir15t"), ExtResource("8_ca42v"), ExtResource("9_rysoc"), ExtResource("10_ssvqc")])
 MEDIUM_METEOROIDS = Array[ExtResource("6_trtic")]([ExtResource("11_264po"), ExtResource("12_1kice")])
 SMALL_METEOROIDS = Array[ExtResource("6_trtic")]([ExtResource("13_5newe"), ExtResource("14_37s47")])
-
-[node name="Score Overlay" parent="." unique_id=1629194483 instance=ExtResource("14_trtic")]
-offset = Vector2(50, 0)
-scale = Vector2(0.8, 0.8)
-transform = Transform2D(0.8, 0, 0, 0.8, 50, 0)

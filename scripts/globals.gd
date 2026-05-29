@@ -11,6 +11,7 @@ var multiplayer_mode: bool = false
 var player_1_score: int = 0
 var player_2_score: int = 0
 
+@onready var health_overlay: CanvasLayer
 
 func get_spawn_point(player_number: int) -> Vector2:
 	# Get cached spawn point if known
@@ -41,3 +42,13 @@ func get_player_of_polarity(pol: Polarity) -> CharacterBody2D:
 		return null
 	else:
 		return players[0]
+
+
+func update_health_bar(player: int, health: int):
+	if health_overlay == null:
+		health_overlay = get_tree().root.find_child("HealthOverlay", true, false)
+
+	if health_overlay:
+		health_overlay.update_health_bar(player, health)
+	else:
+		push_warning("[Globals] Health overlay object not found")
