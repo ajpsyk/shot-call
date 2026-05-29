@@ -82,15 +82,15 @@ func build_minute_3_to_4() -> void:
 	add_stream(170.0, 190.0, 0.3, 0.32, "big", "none", 330.0)  
 	add_stream(170.0, 190.0, 0.3, 0.68, "big", "none", 330.0)
 
-	# Center spawns accelerating in frequency (decreasing delay) and velocity
-	add_single(171.0, 0.50, "big", "blue", 300.0) # +3.0s delay
-	add_single(174.0, 0.50, "big", "red", 300.0)  # +2.6s delay
-	add_single(176.6, 0.50, "big", "blue", 310.0) # +2.2s delay
-	add_single(178.8, 0.50, "big", "blue", 310.0) # +1.8s delay
-	add_single(180.6, 0.50, "big", "red", 320.0)  # +1.5s delay
-	add_single(182.1, 0.50, "big", "blue", 320.0) # +1.3s delay
-	add_single(183.4, 0.50, "big", "red", 330.0)  # +1.2s delay
-	add_single(184.4, 0.50, "big", "blue", 340.0) # Final high-speed rapid drops
+
+	add_single(171.0, 0.50, "big", "blue", 300.0)
+	add_single(174.0, 0.50, "big", "red", 300.0) 
+	add_single(176.6, 0.50, "big", "blue", 310.0)
+	add_single(178.8, 0.50, "big", "blue", 310.0)
+	add_single(180.6, 0.50, "big", "red", 320.0) 
+	add_single(182.1, 0.50, "big", "blue", 320.0)
+	add_single(183.4, 0.50, "big", "red", 330.0)
+	add_single(184.4, 0.50, "big", "blue", 340.0)
 	add_single(185.2, 0.50, "big", "red", 350.0)
 	add_single(186.0, 0.50, "big", "blue", 360.0)
 	add_single(186.8, 0.50, "big", "red", 350.0)
@@ -101,34 +101,32 @@ func build_minute_3_to_4() -> void:
 	add_choke_point_wall(201.0, 2, "red", 350.0)
 
 func build_minute_4_to_5() -> void:
-	# Converted from choke point walls to shootable mixed walls
 	add_choke_point_wall(210.0, 0, "red", 360.0)
 	add_choke_point_wall(211.0, 1, "blue", 360.0)
 	add_choke_point_wall(212.0, 4, "blue", 360.0)
 	add_choke_point_wall(213.0, 3, "red", 360.0)
 	add_choke_point_wall(214.0, 2, "mixed", 360.0)
 	
-	# Hyper speed background hazard dash
+
 	add_contained_zig_zag(220.0, 285.0, 0.3, 0.15, 0.85, "big", "mixed", 350.0) 
 	
-	# Converted climax gates to shootable mixed walls spaced at 1-second intervals
 	add_wall(230.0, "big", "mixed", 380.0)
 	add_wall(231.0, "big", "mixed", 380.0)
 	add_wall(232.0, "big", "mixed", 380.0)
 	add_wall(233.0, "big", "mixed", 380.0)
 	add_wall(234.0, "big", "mixed", 380.0)
 	
-	# Searing center stream swapped to "none" polarity to act as an unkillable lane divider
+
 	add_stream(245.0, 285.0, 0.2, 0.50, "big", "none", 400.0) 
 	
-	# Converted final rapid gates to shootable mixed walls flanking the center stream
+
 	add_wall(250.0, "big", "mixed", 400.0)
 	add_wall(252.0, "big", "mixed", 400.0)
 	add_wall(254.0, "big", "mixed", 400.0)
 	add_wall(256.0, "big", "mixed", 400.0)
 	add_wall(258.0, "big", "mixed", 400.0)
 	
-	# Sustained onslaught: continuous walls spaced every 2 seconds to match the full stream runtime
+
 	add_wall(260.0, "big", "mixed", 400.0)
 	add_wall(262.0, "big", "mixed", 400.0)
 	add_wall(264.0, "big", "mixed", 400.0)
@@ -142,8 +140,6 @@ func build_minute_4_to_5() -> void:
 	add_wall(280.0, "big", "mixed", 400.0)
 	add_wall(282.0, "big", "mixed", 400.0)
 	add_wall(284.0, "big", "mixed", 400.0)
-	
-	# Final threshold gate converted to a shootable red wall
 	add_wall(295.0, "big", "red", 400.0)
 	add_wall(295.2, "big", "blue", 400.0)
 	
