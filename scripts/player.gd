@@ -4,9 +4,8 @@ extends CharacterBody2D
 
 # ~ Game Logic ~
 
-## Indicates which player number the player is (1 or 2) or that the player is playing singleplayer (0).
-## NOTE: Player 0 is currently unsupported.
-@export var player_number: int = 0
+## Indicates which player number the player is (1 or 2).
+@export var player_number: int = 1
 
 ## The speed at which the player moves in pixels/second.
 @export var move_speed: float = 300
@@ -28,8 +27,6 @@ var dead: bool = false
 
 @onready var hurtbox: Area2D = $Hurtbox
 
-@onready var health_rich_text_label: RichTextLabel = $HealthRichTextLabel
-
 
 # ~~~~~ FUNCTIONALITY ~~~~~
 
@@ -41,7 +38,7 @@ func _ready() -> void:
 	update_ship_sprite()
 	update_hurtbox_polarity()
 	set_hurtbox_active(true)
-	update_health_ui()
+	Globals.update_health_bar(player_number, health)
 	set_global_position(Globals.get_spawn_point(player_number))
 	dead = false
 
@@ -98,7 +95,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			var area_parent := area.get_parent()
 			if "polarity" in area_parent and area_parent.polarity != polarity:
 					change_health(-1)
-			
+
 
 
 # ~ Helper Functions ~
@@ -126,6 +123,8 @@ func update_ship_sprite():
 	elif polarity == Globals.Polarity.BLUE:
 		red_ship_sprite.set_visible(false)
 		blue_ship_sprite.set_visible(true)
+	if not Globals.multiplayer_mode:
+		Globals.update_singleplayer_health_bar_color(polarity)
 
 func update_hurtbox_polarity():
 	if polarity == Globals.Polarity.RED:
@@ -139,7 +138,7 @@ func change_health(amount: int):
 	health += amount
 	if health > max_health:
 		health = max_health
-	update_health_ui()
+	Globals.update_health_bar(player_number, health)
 	if health <= 0:
 		die()
 
@@ -149,14 +148,9 @@ func die():
 	blue_ship_sprite.set_visible(false)
 	red_ship_sprite.set_visible(false)
 	set_hurtbox_active(false)
-	health_rich_text_label.set_text("Died! Press Action to respawn")
 	# Call _ready() to respawn the player
 
 func set_hurtbox_active(active: bool) -> void:
 	hurtbox.set_deferred("monitoring", active)
 	hurtbox.set_deferred("monitorable", active)
 
-
-func update_health_ui():
-	# We can change this function to call something on a UI element later.
-	health_rich_text_label.set_text(str(health))
