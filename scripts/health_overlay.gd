@@ -5,8 +5,8 @@ extends CanvasLayer
 @onready var p1_respawn_text: RichTextLabel = $P1RespawnText
 @onready var p2_respawn_text: RichTextLabel = $P2RespawnText
 
-var bar_red = preload("res://assets/img/HealthBarRed.png")
-var bar_blue = preload("res://assets/img/HealthBarBlue.png")
+var bar_red = preload("res://assets/img/HealthBarSRed.png")
+var bar_blue = preload("res://assets/img/HealthBarSBlue.png")
 
 func _ready() -> void:
 	p1_respawn_text.visible = false
