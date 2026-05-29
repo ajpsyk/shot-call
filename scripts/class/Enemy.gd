@@ -95,11 +95,10 @@ func change_health(amount: int, damage_source: Node2D = null) -> void:
 		health = max_health
 
 func award_points(player_num: int) -> void:
-	# print(score_value, "pts for player ", player_num)
 	if player_num == 1:
 		Globals.player_1_score += score_value
 	elif player_num == 2:
-		Globals.player_1_score += score_value
+		Globals.player_2_score += score_value
 
 func set_hurtbox_active(active: bool) -> void:
 	hurtbox.set_deferred("monitoring", active)
