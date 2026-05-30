@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ckdqx87m8wsw" path="res://scenes/level_splash.tscn" id="2_yj0e2"]
 [ext_resource type="Texture2D" uid="uid://dhwoi80ukym2r" path="res://assets/kenney_space-shooter-remastered/Backgrounds/background 1.png" id="3_yj0e2"]
 [ext_resource type="PackedScene" uid="uid://c04mqx6ntmd8h" path="res://scenes/score_overlay.tscn" id="4_b8nnx"]
-[ext_resource type="PackedScene" path="res://scenes/health_overlay.tscn" id="5_xpi84"]
+[ext_resource type="PackedScene" uid="uid://muf2yguqca7" path="res://scenes/health_overlay.tscn" id="5_xpi84"]
 [ext_resource type="PackedScene" uid="uid://buwwawpf4y78f" path="res://actors/player.tscn" id="6_l5ern"]
 [ext_resource type="PackedScene" uid="uid://b6mm1l2f6ynx3" path="res://scenes/laser_manager.tscn" id="7_rn8p1"]
 [ext_resource type="PackedScene" uid="uid://xb38s4s5lhjs" path="res://scenes/laser.tscn" id="8_aqfoy"]
@@ -19,6 +19,7 @@
 [ext_resource type="Resource" uid="uid://25llfmmrvjle" path="res://resources/med_meteoroid_2.tres" id="16_bknwo"]
 [ext_resource type="Resource" uid="uid://cxtmr8ebqgba3" path="res://resources/small_meteoroid_1.tres" id="17_wae70"]
 [ext_resource type="Resource" uid="uid://c6h2cn4wcs7tq" path="res://resources/small_meteoroid_2.tres" id="18_tap74"]
+[ext_resource type="PackedScene" uid="uid://b24hkm4hw7wiy" path="res://actors/basic_boss.tscn" id="20_yj0e2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
@@ -73,7 +74,7 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_uwrxv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WorldBorder/StaticBody2D" unique_id=635149500]
-polygon = PackedVector2Array(-20, 0, 540, 0, 540, 960, 0, 960, 0, 0, -20, 0, -20, 980, 560, 980, 560, -20, -20, -20)
+polygon = PackedVector2Array(-20, 0, 540, 0, 540, 930, 0, 930, 0, 0, -20, 0, -20, 950, 560, 950, 560, -20, -20, -20)
 
 [node name="LaserManager" parent="." unique_id=1663080434 instance=ExtResource("7_rn8p1")]
 laser_scene = ExtResource("8_aqfoy")
@@ -82,3 +83,6 @@ laser_scene = ExtResource("8_aqfoy")
 BIG_METEOROIDS = Array[ExtResource("10_cdgau")]([ExtResource("11_a44jb"), ExtResource("12_glmku"), ExtResource("13_au5l7"), ExtResource("14_46f8w")])
 MEDIUM_METEOROIDS = Array[ExtResource("10_cdgau")]([ExtResource("15_f7erf"), ExtResource("16_bknwo")])
 SMALL_METEOROIDS = Array[ExtResource("10_cdgau")]([ExtResource("17_wae70"), ExtResource("18_tap74")])
+
+[node name="EnemyBasicBoss" parent="." unique_id=701006875 instance=ExtResource("20_yj0e2")]
+position = Vector2(255, -149)
