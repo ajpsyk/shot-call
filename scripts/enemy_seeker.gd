@@ -28,7 +28,8 @@ func _ready() -> void:
 
 	curr_speed = base_speed
 	rotate(PI/2)
-	set_random_polarity()
+	if polarity == Globals.Polarity.NONE:
+		set_random_polarity()
 	velocity = Vector2.DOWN * curr_speed
 
 func _physics_process(_delta: float) -> void:
@@ -73,4 +74,3 @@ func spawn_projectile(angle: float):
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
-
