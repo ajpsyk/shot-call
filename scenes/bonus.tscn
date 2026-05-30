@@ -19,7 +19,7 @@
 [ext_resource type="Resource" uid="uid://25llfmmrvjle" path="res://resources/med_meteoroid_2.tres" id="16_bknwo"]
 [ext_resource type="Resource" uid="uid://cxtmr8ebqgba3" path="res://resources/small_meteoroid_1.tres" id="17_wae70"]
 [ext_resource type="Resource" uid="uid://c6h2cn4wcs7tq" path="res://resources/small_meteoroid_2.tres" id="18_tap74"]
-[ext_resource type="PackedScene" uid="uid://b24hkm4hw7wiy" path="res://actors/basic_boss.tscn" id="20_yj0e2"]
+[ext_resource type="AudioStream" uid="uid://bb37hgm5b3un2" path="res://assets/music - pixabay/imageaudioteam-80s-synth-166739.mp3" id="20_yj0e2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
@@ -27,6 +27,11 @@
 script = ExtResource("1_4wxfo")
 level_id = 99
 level_splash_scene = ExtResource("2_yj0e2")
+
+[node name="Imageaudioteam80sSynth166739" type="AudioStreamPlayer" parent="." unique_id=1219253543]
+stream = ExtResource("20_yj0e2")
+volume_db = 1.238
+autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1049190898]
 script = ExtResource("2_iix62")
@@ -83,6 +88,3 @@ laser_scene = ExtResource("8_aqfoy")
 BIG_METEOROIDS = Array[ExtResource("10_cdgau")]([ExtResource("11_a44jb"), ExtResource("12_glmku"), ExtResource("13_au5l7"), ExtResource("14_46f8w")])
 MEDIUM_METEOROIDS = Array[ExtResource("10_cdgau")]([ExtResource("15_f7erf"), ExtResource("16_bknwo")])
 SMALL_METEOROIDS = Array[ExtResource("10_cdgau")]([ExtResource("17_wae70"), ExtResource("18_tap74")])
-
-[node name="EnemyBasicBoss" parent="." unique_id=701006875 instance=ExtResource("20_yj0e2")]
-position = Vector2(255, -149)
