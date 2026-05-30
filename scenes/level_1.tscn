@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://gmu5kfimkk63"]
 
 [ext_resource type="Script" uid="uid://cbhjb35kbxid6" path="res://scripts/game.gd" id="1_1s4pk"]
+[ext_resource type="PackedScene" uid="uid://ckdqx87m8wsw" path="res://scenes/level_splash.tscn" id="2_7nomh"]
 [ext_resource type="Script" uid="uid://155i6meqb7g1" path="res://scripts/parallax_background.gd" id="2_x2xxo"]
 [ext_resource type="Texture2D" uid="uid://dhwoi80ukym2r" path="res://assets/kenney_space-shooter-remastered/Backgrounds/background 1.png" id="3_2cbcq"]
 [ext_resource type="PackedScene" path="res://scenes/health_overlay.tscn" id="4_6dial"]
@@ -20,6 +21,8 @@
 
 [node name="game" type="Node2D" unique_id=1924521991]
 script = ExtResource("1_1s4pk")
+level_id = 1
+level_splash_scene = ExtResource("2_7nomh")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1049190898]
 script = ExtResource("2_x2xxo")
@@ -71,6 +74,7 @@ laser_scene = ExtResource("6_tr1x6")
 script = ExtResource("7_15mv3")
 BIG_METEOROIDS = Array[ExtResource("8_wbtxt")]([ExtResource("9_x2fux"), ExtResource("10_s7g0b"), ExtResource("11_mmfjm"), ExtResource("12_k8ld0")])
 meteor_scene = ExtResource("8_2aecg")
+test_section = "Minute 4-5"
 
 [node name="Score Overlay" parent="." unique_id=1629194483 instance=ExtResource("17_hjqri")]
 offset = Vector2(50, 0)

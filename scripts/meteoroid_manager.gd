@@ -1,5 +1,7 @@
 extends Node2D
 
+signal level_completed
+
 @export var BIG_METEOROIDS: Array[MeteoroidResource] = []
 @export var MEDIUM_METEOROIDS: Array[MeteoroidResource] = []
 @export var SMALL_METEOROIDS: Array[MeteoroidResource] = []
@@ -20,15 +22,18 @@ var current_delay: float
 var medium_added: bool
 var small_added: bool
 
-
 func _ready() -> void:
 	current_delay = starting_spawn_delay
 	active_templates.append_array(BIG_METEOROIDS)
 	
 func _physics_process(delta: float) -> void:
-	timer += delta
 	time_elapsed += delta
 	
+	if time_elapsed >= 120.0:
+		level_completed.emit()
+		set_physics_process(false)
+		return
+		
 	if not medium_added and time_elapsed > medium_spawn_delay:
 		active_templates.append_array(MEDIUM_METEOROIDS)
 		medium_added = true
@@ -36,6 +41,11 @@ func _physics_process(delta: float) -> void:
 		active_templates.append_array(SMALL_METEOROIDS)
 		small_added = true
 	
+	
+	if time_elapsed >= 100.0:
+		return
+		
+	timer += delta
 	if timer >= current_delay:
 		spawn_meteor()
 		timer = 0.0
@@ -51,6 +61,3 @@ func spawn_meteor() -> void:
 	meteor.global_position = Vector2(x_pos, -100)
 	
 	add_child(meteor)
-
-
-	

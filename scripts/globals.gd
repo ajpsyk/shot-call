@@ -4,6 +4,8 @@ enum Polarity { NONE, RED, BLUE }
 
 var players: Array[CharacterBody2D]
 
+var last_completed_level: int
+
 var spawn_points: Array[Marker2D] = [null, null, null]
 
 var multiplayer_mode: bool = false

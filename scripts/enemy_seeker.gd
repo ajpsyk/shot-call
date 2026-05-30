@@ -28,7 +28,8 @@ func _ready() -> void:
 
 	curr_speed = base_speed
 	rotate(PI/2)
-	set_random_polarity()
+	if polarity == Globals.Polarity.NONE:
+		set_random_polarity()
 	velocity = Vector2.DOWN * curr_speed
 
 func _physics_process(_delta: float) -> void:
@@ -41,7 +42,7 @@ func _physics_process(_delta: float) -> void:
 
 # Start pursuing player when found
 func _on_targeting_area_body_entered(body: Node2D) -> void:
-	if !in_pursuit_mode and body.is_in_group("Player"):
+	if !in_pursuit_mode and body.is_in_group("Player") and !body.dead:
 		# enter pursuit mode
 		in_pursuit_mode = true
 		pursued_player = body
@@ -52,7 +53,7 @@ func _on_targeting_area_body_entered(body: Node2D) -> void:
 
 # Trigger explosion when player is in range
 func _on_trigger_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and !body.dead:
 		curr_speed = 0
 		trigger_timer.start()
 
@@ -73,4 +74,3 @@ func spawn_projectile(angle: float):
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
-

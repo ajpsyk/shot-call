@@ -17,14 +17,14 @@ func _ready() -> void:
 func update_health_bar(player: int, health: int) -> void:
 	if player == 1:
 		p1_bar.value = health
-		if health == 0:
+		if health <= 0:
 			p1_respawn_text.visible = true
 		else:
 			p1_respawn_text.visible = false
 
 	elif player == 2:
 		p2_bar.value = health
-		if health == 0:
+		if health <= 0:
 			p2_respawn_text.visible = true
 		else:
 			p2_respawn_text.visible = false
