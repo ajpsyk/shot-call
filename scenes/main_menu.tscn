@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dnxtdkwb8ooko" path="res://scripts/button_manager.gd" id="3_rtw2f"]
 [ext_resource type="FontFile" uid="uid://cdit44gmuwa42" path="res://assets/kenney_space-shooter-remastered/Bonus/kenvector_future_thin.ttf" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bncy1yp3y4sxm" path="res://assets/kenney_space-shooter-remastered/PNG/Effects/star1.png" id="5_oa1go"]
+[ext_resource type="AudioStream" uid="uid://bowdtljt8er1o" path="res://assets/music - pixabay/gabrieleromanoy-relax-synth-275097.mp3" id="7_oa1go"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
 
@@ -109,6 +110,10 @@ theme = SubResource("Theme_wu84c")
 theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 65
 text = "Shot Call"
+
+[node name="GabrieleromanoyRelaxSynth275097" type="AudioStreamPlayer" parent="." unique_id=1921404228]
+stream = ExtResource("7_oa1go")
+autoplay = true
 
 [connection signal="pressed" from="Button Manager/Single Player" to="." method="_on_single_player_pressed"]
 [connection signal="pressed" from="Button Manager/Co-op" to="." method="_on_coop_pressed"]

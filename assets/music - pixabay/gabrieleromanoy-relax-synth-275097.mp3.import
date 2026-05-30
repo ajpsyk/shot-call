@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bowdtljt8er1o"
+path="res://.godot/imported/gabrieleromanoy-relax-synth-275097.mp3-b1871d84ddf232edab9f32ff4f077ef7.mp3str"
+
+[deps]
+
+source_file="res://assets/music - pixabay/gabrieleromanoy-relax-synth-275097.mp3"
+dest_files=["res://.godot/imported/gabrieleromanoy-relax-synth-275097.mp3-b1871d84ddf232edab9f32ff4f077ef7.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

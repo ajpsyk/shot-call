@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://155i6meqb7g1" path="res://scripts/parallax_background.gd" id="2_igmy8"]
 [ext_resource type="PackedScene" uid="uid://ckdqx87m8wsw" path="res://scenes/level_splash.tscn" id="2_k6a82"]
 [ext_resource type="Texture2D" uid="uid://dhwoi80ukym2r" path="res://assets/kenney_space-shooter-remastered/Backgrounds/background 1.png" id="3_wdtqu"]
-[ext_resource type="PackedScene" uid="uid://muf2yguqca7" path="res://scenes/health_overlay.tscn" id="4_7qsfm"]
+[ext_resource type="PackedScene" path="res://scenes/health_overlay.tscn" id="4_7qsfm"]
 [ext_resource type="PackedScene" uid="uid://buwwawpf4y78f" path="res://actors/player.tscn" id="5_bv48q"]
 [ext_resource type="PackedScene" uid="uid://b6mm1l2f6ynx3" path="res://scenes/laser_manager.tscn" id="6_k22d5"]
 [ext_resource type="PackedScene" uid="uid://xb38s4s5lhjs" path="res://scenes/laser.tscn" id="7_k6a82"]
@@ -21,13 +21,18 @@
 [ext_resource type="Resource" uid="uid://cxtmr8ebqgba3" path="res://resources/small_meteoroid_1.tres" id="16_vhnap"]
 [ext_resource type="Resource" uid="uid://c6h2cn4wcs7tq" path="res://resources/small_meteoroid_2.tres" id="17_vwfin"]
 [ext_resource type="PackedScene" uid="uid://cfdt8iosb00sr" path="res://actors/enemy_seeker.tscn" id="19_63d2t"]
+[ext_resource type="AudioStream" uid="uid://c5wpmacetrv1j" path="res://assets/music - pixabay/adamasr-electro-synth-155475.mp3" id="22_1sb0y"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
-[node name="game" type="Node2D" unique_id=1924521991]
+[node name="game2" type="Node2D" unique_id=1924521991]
 script = ExtResource("1_guvtl")
 level_id = 2
 level_splash_scene = ExtResource("2_k6a82")
+
+[node name="AdamasrElectroSynth155475" type="AudioStreamPlayer" parent="." unique_id=356309579]
+stream = ExtResource("22_1sb0y")
+autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1049190898]
 script = ExtResource("2_igmy8")
@@ -82,7 +87,6 @@ MEDIUM_METEOROIDS = Array[ExtResource("9_vhnap")]([ExtResource("14_k6a82"), ExtR
 SMALL_METEOROIDS = Array[ExtResource("9_vhnap")]([ExtResource("16_vhnap"), ExtResource("17_vwfin")])
 meteor_scene = ExtResource("14_bgibu")
 seeker_scene = ExtResource("19_63d2t")
-test_section = "Minute 4-5"
 
 [node name="Score Overlay" parent="." unique_id=1629194483 instance=ExtResource("15_73m23")]
 offset = Vector2(50, 0)
