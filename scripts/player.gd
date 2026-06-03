@@ -28,6 +28,9 @@ var invincible: bool = false
 
 @onready var hurtbox: Area2D = $Hurtbox
 
+@onready var shoot_sound: AudioStreamPlayer2D = $ShootSound
+@onready var hurt_sound: AudioStreamPlayer2D = $HurtSound
+
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -110,6 +113,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 func fire():
 	if laser_manager and fire_timer >= fire_delay:
 		laser_manager.fire_laser(global_position, polarity, player_number)
+		shoot_sound.play()
 		fire_timer = 0.0
 
 func action():
@@ -143,6 +147,9 @@ func update_hurtbox_polarity():
 
 func change_health(amount: int):
 	health += amount
+	if amount < 0 and health > 0:
+		hurt_sound.play()
+	
 	if health > max_health:
 		health = max_health
 	Globals.update_health_bar(player_number, health)
