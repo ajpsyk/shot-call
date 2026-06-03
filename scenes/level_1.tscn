@@ -20,13 +20,14 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
-[node name="game2" type="Node2D" unique_id=1924521991]
+[node name="game3" type="Node2D" unique_id=1924521991]
 script = ExtResource("1_1s4pk")
 level_id = 1
 level_splash_scene = ExtResource("2_7nomh")
 
 [node name="OsynthwInspiringOptimistic80sSynthPop345070" type="AudioStreamPlayer" parent="." unique_id=165042014]
 stream = ExtResource("3_1s4pk")
+volume_db = -7.429
 autoplay = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1049190898]

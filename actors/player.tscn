@@ -2,7 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://r2oatm4yk370" path="res://assets/kenney_space-shooter-remastered/PNG/playerShip3_red.png" id="1_5c43a"]
 [ext_resource type="Script" uid="uid://0j1wxdgi57g2" path="res://scripts/player.gd" id="1_mvpqy"]
+[ext_resource type="AudioStream" uid="uid://cnimlrmv5qdix" path="res://assets/kenney_space-shooter-remastered/Bonus/sfx_shieldDown.ogg" id="2_kjkj0"]
 [ext_resource type="Texture2D" uid="uid://dlyxecxxgt6m" path="res://assets/kenney_space-shooter-remastered/PNG/playerShip3_blue.png" id="3_1yqc4"]
+[ext_resource type="AudioStream" uid="uid://lbfsk7j6pv5l" path="res://assets/kenney_space-shooter-remastered/Bonus/sfx_laser2.ogg" id="4_esgq3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1yqc4"]
 radius = 22.0
@@ -78,6 +80,10 @@ _data = {
 collision_mask = 16
 script = ExtResource("1_mvpqy")
 
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=640594812]
+stream = ExtResource("2_kjkj0")
+volume_db = 1.238
+
 [node name="RedShipSprite" type="Sprite2D" parent="." unique_id=399893877]
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_5c43a")
@@ -95,6 +101,9 @@ collision_mask = 204
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=198870824]
 shape = SubResource("CircleShape2D_esgq3")
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1164900513]
+stream = ExtResource("4_esgq3")
 
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=1928516379]
 one_shot = true

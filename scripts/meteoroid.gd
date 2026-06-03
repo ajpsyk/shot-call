@@ -9,6 +9,7 @@ var hitbox: float
 var final_speed: float = 0.0
 var polarity_is_preset: bool = false
 
+
 func init(texture, radius, score, custom_speed: float = 0.0) -> void:
 	texture_to_use = texture
 	hitbox = radius

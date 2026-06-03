@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://tetm1bl8lfp8"]
 
 [ext_resource type="Script" uid="uid://2c32wbwfbhac" path="res://scripts/meteoroid.gd" id="1_dpgfl"]
+[ext_resource type="AudioStream" uid="uid://d0n0ruik64y28" path="res://assets/sound/GameSupply NintendoSFX/1/Hit_Hurt5.wav" id="2_u01cw"]
+[ext_resource type="AudioStream" uid="uid://c6ga6hqehvdq4" path="res://assets/sound/GameSupply NintendoSFX/1/Hit_Hurt11.wav" id="3_mdl25"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dlr3y"]
 
@@ -21,5 +23,11 @@ collision_mask = 35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=405041427]
 shape = SubResource("CircleShape2D_dlr3y")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=334747651]
+stream = ExtResource("2_u01cw")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=361046511]
+stream = ExtResource("3_mdl25")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
