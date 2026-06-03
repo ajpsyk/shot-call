@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://cdit44gmuwa42" path="res://assets/kenney_space-shooter-remastered/Bonus/kenvector_future_thin.ttf" id="3_wu84c"]
 [ext_resource type="Texture2D" uid="uid://bncy1yp3y4sxm" path="res://assets/kenney_space-shooter-remastered/PNG/Effects/star1.png" id="5_oa1go"]
 [ext_resource type="AudioStream" uid="uid://bowdtljt8er1o" path="res://assets/music - pixabay/gabrieleromanoy-relax-synth-275097.mp3" id="7_oa1go"]
+[ext_resource type="Texture2D" uid="uid://bxm88u6swm2nu" path="res://assets/img/Ps-circle-button.png" id="8_tbmy8"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ln24"]
 
@@ -35,12 +36,12 @@
 [sub_resource type="Theme" id="Theme_wu84c"]
 
 [node name="Main Menu" type="Node2D" unique_id=576562020]
-position = Vector2(4, 8)
 script = ExtResource("1_l6cm7")
 
 [node name="Background1" type="Sprite2D" parent="." unique_id=1306607259]
-position = Vector2(271, 482)
-scale = Vector2(0.5927462, 0.11856457)
+position = Vector2(270.99997, 2530)
+rotation = 3.1415927
+scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_ekxnf")
 
 [node name="Button Manager" type="Control" parent="." unique_id=1141087136]
@@ -81,12 +82,26 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_tbmy8")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rcqid")
 text = "Co-op"
 
+[node name="Credits" type="Button" parent="Button Manager" unique_id=233592900]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 495.0
+offset_right = 325.0
+offset_bottom = 622.0
+theme_override_fonts/font = ExtResource("3_wu84c")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rtw2f")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5dd4i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tbmy8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rcqid")
+text = "Credits"
+
 [node name="Quit" type="Button" parent="Button Manager" unique_id=228762132]
 layout_mode = 0
 offset_left = 211.0
-offset_top = 522.0
+offset_top = 626.0
 offset_right = 296.0
-offset_bottom = 587.0
+offset_bottom = 691.0
 theme_override_fonts/font = ExtResource("3_wu84c")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxEmpty_oa1go")
@@ -111,10 +126,81 @@ theme_override_fonts/font = ExtResource("3_bqqt6")
 theme_override_font_sizes/font_size = 65
 text = "Shot Call"
 
+[node name="Control" type="Control" parent="." unique_id=543659993]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -4.0
+offset_top = 952.0
+offset_right = 36.0
+offset_bottom = 992.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control" unique_id=1979386171]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 154.0
+offset_right = 544.0
+offset_bottom = 951.0
+theme_override_fonts/normal_font = ExtResource("3_wu84c")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]Created by Anthony Psyk
+and Cole Pak
+
+
+Additional visuals from
+[font_size=32]Space Shooter Remastered[/font_size]
+by Kenney
+
+
+Additional sound from
+[font_size=32]NintendoSFX[/font_size]
+by GameSupply
+
+
+Music by
+[font_size=32]Adamasr[/font_size]
+[font_size=32]gabrieleromanoy[/font_size]
+[font_size=32]imageaudioteam[/font_size]
+[font_size=32]Osynthw[/font_size]
+
+
+Made in
+[font_size=32]Godot 4[/font_size]
+
+
+press T, comma, or     
+to return to main menu
+[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control" unique_id=259646646]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 21.0
+offset_right = 544.0
+offset_bottom = 159.0
+theme_override_fonts/normal_font = ExtResource("3_bqqt6")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center]SHOT CALL Credits[/center]"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=153352644]
+
+[node name="MainMenuCameraPosition" type="Marker2D" parent="." unique_id=1821239442]
+position = Vector2(270, 480)
+
+[node name="CreditsCameraPosition" type="Marker2D" parent="." unique_id=1933167814]
+position = Vector2(270, 1440)
+
 [node name="GabrieleromanoyRelaxSynth275097" type="AudioStreamPlayer" parent="." unique_id=1921404228]
 stream = ExtResource("7_oa1go")
 autoplay = true
 
+[node name="PsCircleButton" type="Sprite2D" parent="." unique_id=588759942]
+position = Vector2(405, 1854.9999)
+scale = Vector2(0.053151127, 0.053151112)
+texture = ExtResource("8_tbmy8")
+
 [connection signal="pressed" from="Button Manager/Single Player" to="." method="_on_single_player_pressed"]
 [connection signal="pressed" from="Button Manager/Co-op" to="." method="_on_coop_pressed"]
+[connection signal="pressed" from="Button Manager/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Button Manager/Quit" to="." method="_on_quit_pressed"]
