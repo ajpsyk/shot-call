@@ -25,7 +25,7 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uwrxv"]
 
-[node name="game2" type="Node2D" unique_id=1924521991]
+[node name="game4" type="Node2D" unique_id=1924521991]
 script = ExtResource("1_guvtl")
 level_id = 2
 level_splash_scene = ExtResource("2_k6a82")
