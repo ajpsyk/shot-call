@@ -10,6 +10,70 @@ radius = 22.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_esgq3"]
 radius = 25.179358
 
+[sub_resource type="Animation" id="Animation_1yqc4"]
+resource_name = "RESET"
+length = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RedShipSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlueShipSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_esgq3"]
+resource_name = "invincible"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RedShipSprite:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.49803922), Color(1, 1, 1, 0.12156863), Color(1, 1, 1, 0.49803922)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlueShipSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.49803922), Color(1, 1, 1, 0.12156863), Color(1, 1, 1, 0.49803922)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_esgq3"]
+_data = {
+&"RESET": SubResource("Animation_1yqc4"),
+&"invincible": SubResource("Animation_esgq3")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=2145724321 groups=["Player"]]
 collision_mask = 16
 script = ExtResource("1_mvpqy")
@@ -32,4 +96,11 @@ collision_mask = 204
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=198870824]
 shape = SubResource("CircleShape2D_esgq3")
 
+[node name="InvincibilityTimer" type="Timer" parent="." unique_id=1928516379]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=401959830]
+libraries/ = SubResource("AnimationLibrary_esgq3")
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]

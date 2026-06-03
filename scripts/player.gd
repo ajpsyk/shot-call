@@ -20,12 +20,17 @@ var polarity: Globals.Polarity = Globals.Polarity.RED
 var fire_timer: float = 0.0
 
 var dead: bool = false
+var invincible: bool = false
 
 # ~ Child Node References ~
 @onready var red_ship_sprite: Sprite2D = $RedShipSprite
 @onready var blue_ship_sprite: Sprite2D = $BlueShipSprite
 
 @onready var hurtbox: Area2D = $Hurtbox
+
+@onready var invincibility_timer: Timer = $InvincibilityTimer
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 # ~~~~~ FUNCTIONALITY ~~~~~
@@ -76,25 +81,27 @@ func _input(event: InputEvent) -> void:
 		if player_number == 2 and event.is_action_pressed("p2_action"):
 			get_viewport().set_input_as_handled()
 			action()
-		
-		
 	
 	# Note: Action respawns player when dead. This is for ease of playtesting and should change when we implement an actual respawn mechanic.
 	else:
 		if (player_number == 1 and event.is_action_pressed("p1_action")) or (player_number == 2 and event.is_action_pressed("p2_action")):
 			_ready()
+			enable_invincibility(3)
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Enemy") or area.is_in_group("EnemyAtk"):
-		# If area has polarity (e.g. area is an enemy laser)
-		if "polarity" in area:
-			if area.polarity != polarity:
-				change_health(-1)
-		# If area's parent has polarity (e.g. area is an enemy's hitbox)
-		else:
-			var area_parent := area.get_parent()
-			if "polarity" in area_parent and area_parent.polarity != polarity:
+	if not invincible:
+		if area.is_in_group("Enemy") or area.is_in_group("EnemyAtk"):
+			# If area has polarity (e.g. area is an enemy laser)
+			if "polarity" in area:
+				if area.polarity != polarity:
 					change_health(-1)
+					enable_invincibility(1)
+			# If area's parent has polarity (e.g. area is an enemy's hitbox)
+			else:
+				var area_parent := area.get_parent()
+				if "polarity" in area_parent and area_parent.polarity != polarity:
+					change_health(-1)
+					enable_invincibility(1)
 
 
 
@@ -160,3 +167,12 @@ func die():
 func set_hurtbox_active(active: bool) -> void:
 	hurtbox.set_deferred("monitoring", active)
 	hurtbox.set_deferred("monitorable", active)
+
+func enable_invincibility(time: float) -> void:
+	invincible = true
+	invincibility_timer.start(time)
+	animation_player.play("invincible")
+
+func _on_invincibility_timer_timeout() -> void:
+	invincible = false
+	animation_player.play("RESET")
